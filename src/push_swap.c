@@ -1,73 +1,92 @@
-#include <string.h>
+#include "../includes/push_swap.h"
 
-typedef struct		s_num
+int		stacks_is_sort(t_num *a, t_num *b)
 {
-	int num;
-	int index;
-	struct s_num	*next;
-	struct s_num	*prev;
+	int ferst_a;
+	int ferst_b;
 
-}					t_num;
-
-t_num	*lst_create(void)
-{
-	t_num *lst;
-
-	lst = (t_num *)malloc(sizeof(t_num));
-	lst->index = 0;
-	lst->num = 0;
-	lst->next = NULL;
-	lst->prev = NULL;
-	return (lst);
+	ferst_a = a->num;
+	if (a->num < a->next->num)
+		a = a->next;
+	else
+		return (0);
+	if (b->index == -1 && b->num > b->next->num)
+		b = b->next;
+	else
+		return (0);
+	ferst_b = b->num;
+	while (a->num < a->next->num)
+		a = a->next;
+	if (a->num > a->next->num && a->next->num != ferst_a)
+		return (0);
+	while (b->num > b->next->num && b->num != ferst_b)
+		b = b->next;
+	if (b->num > ferst_b && b->next->num != ferst_b)
+		return (0);
+	if (ferst_a < ferst_b)
+		return (0);
+	return (1);
 }
 
-t_num	*lst_new(int len)
+void	push_swap(t_num *a, t_num *b)
 {
-	t_num *lst;
-	t_num *tmp;
+	static int i = 0;
+	t_num *a_f;
+	static t_num *b_f;
 
-	lst = lst_create();
-	tmp = lst;
-	while (--len)
+	a_f = a;
+	b_f = b;
+	while (!stacks_is_sort(a, b))
 	{
-		lst->next = lst_create();
-		lst->next->prev = lst;
-		lst = lst->next;
+		if (a->num != 0 && a->num > a->next->num)
+			ft_sa(a);
+		else if (a->num != 0 && a->num > a->prev->num)
+			ft_rra(&a);
+		else
+		{
+			if (b->index != -1)
+			{
+				b = lst_create();
+				b->prev = b;
+				b->next = b;
+				b_f = b;
+			}
+			else
+			{
+				b->next = lst_create();
+				b->next->prev = b;
+				b->next->num = b->num;
+				b->next->next = b;
+				b = b->next;
+			}
+			if (a->num != 0)
+				ft_pb(&a, &b);
+			if (b->prev && b->num < b->prev->num)
+				ft_rrb(&b);
+			if (b->num < b->next->num)
+				while (b->num < b->next->num)
+					ft_pa(&a, &b);
+		}
 	}
-	tmp->prev = lst;
-	lst->next = tmp;
-	return (lst);
+	while ()
 }
 
-void	push_swap()
+int main(int argc, char **argv)
 {
-	int n[6] = {2, 1, 3, 6, 5, 8};
+	int n[6] = {6, 9, 4, 10};
+	int i = 0;
 
 	t_num *a;
 	t_num *b;
-	t_num *a_f;
-	t_num *b_f;
-	a = (t_num *)malloc(sizeof(t_num) * 6);
-	b = (t_num *)malloc(sizeof(t_num) * 6);
-	a_f = (t_num *)malloc(sizeof(t_num) * 6);
-	b_f = (t_num *)malloc(sizeof(t_num) * 6);
-	a = lst_new(6);
-	a_f = a;
-	int i = 0;
-	while (i < 6)
+
+	a = lst_new(4);
+	while (i < 4)
 	{
 		a->num = n[i];
+		a->index = i;
 		a = a->next;
 		i++;
 	}
-	while (i-- > 0)
-	{
-		printf("%d", a_f->num);
-		a_f = a_f->next;
-	}
-}
-
-void main()
-{
-	push_swap();
+	push_swap(a, b);
+	return 1;
 }
