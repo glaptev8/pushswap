@@ -10,7 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4e00ad1-da46-41d1-a6f2-52ceb5ace954" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/push_swap.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/push_swap.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ft_operations.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/ft_operations.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lst.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/lst.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/push_swap.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/push_swap.c" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -58,7 +62,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1572533161775</updated>
-      <workItem from="1572533163004" duration="45300000" />
+      <workItem from="1572533163004" duration="59589000" />
     </task>
     <servers />
   </component>
