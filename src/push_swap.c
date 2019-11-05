@@ -1,5 +1,5 @@
 #include "../includes/push_swap.h"
-
+#include <stdlib.h>
 int		stacks_is_sort(t_num *a, t_num *b)
 {
 	int		ferst_a;
@@ -86,14 +86,31 @@ void	push_swap(t_num *a, t_num *b)
 int main(int argc, char **argv)
 {
 	count = 0;
-	int n[6] = {2, 1, 3, 6, 5, 8};
+	int n[100] = {-88 , -43 , 13,  124 , 136  ,195 , 210,  268, 307,  333,  335,  340,  291,  373,  397,  398,  361};
 	int i = 0;
-
+	int j;
+	srand(time(NULL));
+	while (i < 99)
+	{
+		j = 0;
+		n[i] = -100 + rand() % 500;
+		while (j < i)
+		{
+			if (n[j] == n[i])
+			{
+				n[i] = -100 + rand() % 500;
+				j = -1;
+			}
+			j++;
+		}
+		i++;
+	}
+	i = 0;
 	t_num *a;
 	t_num *b;
 
-	a = lst_new(6);
-	while (i < 6)
+	a = lst_new(99);
+	while (i < 99)
 	{
 		a->num = n[i];
 		a = a->next;
