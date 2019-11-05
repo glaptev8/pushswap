@@ -4,6 +4,8 @@
 #include <string.h>
 #include <stdlib.h>
 
+int count;
+
 typedef struct		s_num
 {
 	int num;

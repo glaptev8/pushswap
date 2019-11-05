@@ -6,6 +6,8 @@ int		stacks_is_sort(t_num *a, t_num *b)
 	int		ferst_b;
 	int 	flag;
 
+	if (!b)
+		return (0);
 	flag = b->index == -1 ? 1 : 0;
 	if (flag == 0)
 		return (0);
@@ -37,7 +39,6 @@ void	push_swap(t_num *a, t_num *b)
 	int d;
 	while (a->next != NULL && !stacks_is_sort(a, b))
 	{
-//
 		if (a->num > a->next->num)
 			a = ft_sa(a);
 		if (a->num > a->prev->num)
@@ -84,7 +85,8 @@ void	push_swap(t_num *a, t_num *b)
 
 int main(int argc, char **argv)
 {
-	int n[6] = {1, 2, 4, 5, 3, 10};
+	count = 0;
+	int n[6] = {2, 1, 3, 6, 5, 8};
 	int i = 0;
 
 	t_num *a;
@@ -99,5 +101,6 @@ int main(int argc, char **argv)
 	}
 //	b = lst_new(0);
 	push_swap(a, b);
+	printf("\n(%d)", count);
 	return 1;
 }

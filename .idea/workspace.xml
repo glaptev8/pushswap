@@ -14,6 +14,7 @@
       <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/a.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/push_swap.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/push_swap.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ft_operations.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/ft_operations.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lst.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/lst.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/push_swap.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/push_swap.c" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -61,7 +62,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1572533161775</updated>
-      <workItem from="1572533163004" duration="72004000" />
+      <workItem from="1572533163004" duration="75392000" />
     </task>
     <servers />
   </component>

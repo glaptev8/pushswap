@@ -42,7 +42,7 @@ t_num	*lst_add(t_num *a, int n)
 	t_num *b;
 
 	b = lst_create();
-	if (a->index != -1)
+	if (!a || a->index != -1)
 		b->num = n;
 	else if (a->next == NULL && a->prev == NULL)
 	{
