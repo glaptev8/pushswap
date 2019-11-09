@@ -26,4 +26,6 @@ t_num	*lst_add(t_num *a, int n);
 t_num *lst_remove(t_num *a);
 t_num		*ft_sb(t_num *b);
 t_num		*ft_rrb(t_num *b);
+t_num		*ft_ra(t_num *a);
+t_num		*ft_rb(t_num *b);
 #endif
