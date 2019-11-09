@@ -10,14 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4e00ad1-da46-41d1-a6f2-52ceb5ace954" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/libft/libft.h.gch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/push_swap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/push_swap.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/push_swap.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ft_operations.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/ft_operations.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/push_swap" beforeDir="false" afterPath="$PROJECT_DIR$/push_swap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/push_swap.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/push_swap.c" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -73,7 +67,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1572533161775</updated>
-      <workItem from="1572533163004" duration="159021000" />
+      <workItem from="1572533163004" duration="166970000" />
     </task>
     <servers />
   </component>

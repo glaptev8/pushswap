@@ -16,10 +16,8 @@ int		stacks_is_sort(t_num *a, t_num *b)
 		return (0);
 	if (!b || !b->next)
 		return (1);
-//	if (b->next)
-//		return (0);
-//	if (ferst_a < ferst_b)
-//		return (0);
+	if (ferst_a < b->num)
+		return (0);
 	return (1);
 }
 
@@ -101,122 +99,58 @@ int		ft_direction(int x, int d, int m, int y)
 	return (to);
 }
 
-void	push_swap(t_num *a, t_num *b)
+void	*ft_pushb_a(t_num *b, t_num **a)
 {
-	t_num *q;
+//	if (b && b->index == -1)
+//	{
+//		while (b != NULL)
+//		{
+//			a = ft_pa(a, &b);
+//			ft_print(a, b);
+//			if (b && b->prev && b->num > b->prev->num)
+//			{
+//				b = ft_rrb(b);
+//				ft_print(a, b);
+//			}
+//			if (a->num > a->prev->num)
+//			{
+//				a = ft_ra(a);
+//				ft_print(a, b);
+//			}
+//			if (a->num > a->next->num)
+//			{
+//				a = ft_sa(a);
+//				ft_print(a, b);
+//			}
+//		}
+//	}
+	while (b != NULL)
+	{
+		(*a) = ft_pa((*a), &b);
+		ft_print((*a), b);
+		if (b && b->prev && b->num > b->prev->num)
+		{
+			b = ft_rrb(b);
+			ft_print((*a), b);
+		}
+		if ((*a)->num > (*a)->prev->num)
+		{
+			(*a)= ft_ra((*a));
+			ft_print((*a), b);
+		}
+		if ((*a)->num > (*a)->next->num)
+		{
+			(*a)= ft_sa((*a));
+			ft_print((*a), b);
+		}
+	}
+	return ((*a));
+}
+
+void	ft_display_a(t_num *a)
+{
 	int d;
-	int min;
-	int x;
-	int y;
-	int z;
-	int i;
-	int to;
-	int max;
-	int m;
 
-	i = 0;
-	while (a->next != NULL && !stacks_is_sort(a, b))
-	{
-		if (stacks_is_sort(a->next, b))
-		{
-			a = ft_ra(a);
-			ft_print(a, b);
-			break;
-		}
-		q = a->next;
-		min = a->num;
-		max = a->num;
-		z = min;
-		x = 0;
-		y = 0;
-		d = 0;
-		while (q != a)
-		{
-			y++;
-			if (q->num < min)
-			{
-				z = min;
-				x = d;
-				d = y;
-				min = q->num;
-			}
-			if (q->num < z && q->num != min)
-			{
-				z = q->num;
-				x = y;
-			}
-			if (q->num > max)
-			{
-				m = y;
-				max = q->num;
-			}
-			q = q->next;
-		}
-		to = ft_direction(x, d, m, y);
-		i++;
-		while (a->num != min && !stacks_is_sort(a, b))
-		{
-			if (a->num == z && !stacks_is_sort(a, b))
-			{
-				b = ft_pb(&a, b);
-				ft_print(a, b);
-				break;
-			}
-			if (a->num == max && !stacks_is_sort(a, b))
-			{
-				b = ft_pb(&a, b);
-				ft_print(a, b);
-				b = ft_rb(b);
-				ft_print(a, b);
-				break;
-			}
-			if (to == 1 && a->num != min)
-			{
-				a = ft_ra(a);
-				ft_print(a, b);
-			}
-			else if (a->num != min)
-			{
-				a = ft_rra(a);
-				ft_print(a, b);
-			}
-		}
-		if (a->num == min && !stacks_is_sort(a, b))
-		{
-			b = ft_pb(&a, b);
-			ft_print(a,b);
-			if (b->next && b->num < b->next->num)
-			{
-				b = ft_sb(b);
-				ft_print(a,b);
-			}
-		}
-	}
-
-	// нужно вывод
-	if (b && b->index == -1)
-	{
-		while (b != NULL)
-		{
-			a = ft_pa(a, &b);
-			ft_print(a, b);
-			if (b && b->prev && b->num > b->prev->num)
-			{
-				b = ft_rrb(b);
-				ft_print(a, b);
-			}
-			if (a->num > a->prev->num)
-			{
-				a = ft_ra(a);
-				ft_print(a, b);
-			}
-			if (a->num > a->next->num)
-			{
-				a = ft_sa(a);
-				ft_print(a, b);
-			}
-		}
-	}
 	d = a->num;
 
 	printf("%d ", a->num);
@@ -227,6 +161,165 @@ void	push_swap(t_num *a, t_num *b)
 		a = a->next;
 	}
 	printf ("\n");
+}
+
+int		sort_one(t_num **a, t_num *b)
+{
+	if (stacks_is_sort((*a)->next, b))
+	{
+		(*a) = ft_ra((*a));
+		ft_print((*a), b);
+		return (0);
+	}
+	if (stacks_is_sort((*a)->prev, b))
+	{
+		(*a) = ft_rra((*a));
+		ft_print((*a), b);
+		return (0);
+	}
+	return (1);
+}
+
+int		get_min(t_num *a)
+{
+	t_num *q;
+	int min;
+
+	min = a->num;
+	q = a->next;
+	while (q != a)
+	{
+		if (q->num < min)
+			min = q->num;
+		q = q->next;
+	}
+	return (min);
+}
+
+int		get_max(t_num *a)
+{
+	t_num *q;
+	int max;
+
+	max = a->num;
+	q = a->next;
+	while (q != a)
+	{
+		if (q->num > max)
+			max = q->num;
+		q = q->next;
+	}
+	return (max);
+}
+
+int		get_second_min(t_num *a, int min)
+{
+	int m;
+	t_num *q;
+
+	m = a->num;
+	q = a->next;
+	while (q != a)
+	{
+		if (q->num < m && q->num != min)
+			m = q->num;
+		q = q->next;
+	}
+	return (m);
+}
+
+int		get_pos(t_num *a, int n)
+{
+	int i;
+
+	i = 0;
+	while (a->num != n)
+	{
+		i++;
+		a = a->next;
+	}
+	return (i);
+}
+
+int		get_struct_len(t_num *a)
+{
+	t_num *q;
+	int i;
+
+	i = 0;
+	q = a->next;
+	while (q != a)
+	{
+		i++;
+		q = q->next;
+	}
+	return (i);
+}
+
+t_num *ft_oper(t_num *a, t_num **b)
+{
+	int min;
+	int z;
+	int max;
+	int to;
+
+	min = get_min(a);
+	z = get_second_min(a, min);
+	max = get_max(a);
+	to = ft_direction(get_pos(a, z), get_pos(a, min), get_pos(a, max), get_struct_len(a));
+	while (a->num != min && !stacks_is_sort(a, (*b)))
+	{
+		if (a->num == z && !stacks_is_sort(a, (*b)))
+		{
+			(*b) = ft_pb(&a, (*b));
+			ft_print(a, (*b));
+			break;
+		}
+		if (a->num == max && !stacks_is_sort(a, (*b)))
+		{
+			(*b) = ft_pb(&a, (*b));
+			ft_print(a, (*b));
+			(*b) = ft_rb((*b));
+			ft_print(a, (*b));
+			break;
+		}
+		if (to == 1 && a->num != min)
+		{
+			a = ft_ra(a);
+			ft_print(a, (*b));
+		}
+		else if (a->num != min)
+		{
+			a = ft_rra(a);
+			ft_print(a, (*b));
+		}
+	}
+	if (a->num == min && !stacks_is_sort(a, (*b)))
+	{
+		(*b) = ft_pb(&a, (*b));
+		ft_print(a,(*b));
+		if ((*b)->next && (*b)->num < (*b)->next->num)
+		{
+			(*b) = ft_sb((*b));
+			ft_print(a,(*b));
+		}
+	}
+	return (a);
+}
+
+t_num	*push_swap(t_num *a, t_num *b)
+{
+	t_num *q;
+	int min;
+
+	while (a->next != NULL && !stacks_is_sort(a, b))
+	{
+		if (!sort_one(&a, b))
+			break ;
+		min = get_min(a);
+		a = ft_oper(a, &b);
+	}
+	return (ft_pushb_a(b, &a));
 }
 
 int			ft_is_number(char *num)
@@ -265,7 +358,6 @@ int main(int argc, char **argv)
 {
 	count = 0;
 	int n[500];
-//	int n[5] = {1041, 863, 1080, 1069, 1004};
 	int i = 0;
 	int j;
 //
@@ -289,10 +381,10 @@ int main(int argc, char **argv)
 	t_num *a;
 	t_num *b;
 
-	a = lst_new(15);
+	a = lst_new(100);
 //	if (ft_init_stack(&a, argc, argv) == 0)
 //		ft_putstr_fd("Error\n", 2);
-	while (i < 15)
+	while (i < 100)
 	{
 		a->num = n[i];
 		printf("%d  ", a->num);
@@ -302,8 +394,8 @@ int main(int argc, char **argv)
 	printf("\n");
 	b = lst_new(0);
 	b = NULL;
-//	ft_print(a, b);
-	push_swap(a, b);
-	printf("\n(%d)", count);
+	a = push_swap(a, b);
+	ft_display_a(a);
+	printf("(%d)", count);
 	return 1;
 }
