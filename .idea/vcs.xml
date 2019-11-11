@@ -3,5 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/checker" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/valgrind_3.13_high_sierra" vcs="Git" />
   </component>
 </project>

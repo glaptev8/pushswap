@@ -28,4 +28,8 @@ t_num		*ft_sb(t_num *b);
 t_num		*ft_rrb(t_num *b);
 t_num		*ft_ra(t_num *a);
 t_num		*ft_rb(t_num *b);
+t_num		*ft_pa(t_num *a, t_num **b);
+t_num		*ft_pb(t_num **a, t_num *b);
+void	ft_rr(t_num **a, t_num **b);
+void	ft_rrr(t_num **a, t_num **b);
 #endif

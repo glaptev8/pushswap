@@ -72,3 +72,15 @@ t_num		*ft_pa(t_num *a, t_num **b)
 		(*b) = NULL;
 	return (a);
 }
+
+void	ft_rrr(t_num **a, t_num **b)
+{
+	(*a) = ft_rra((*a));
+	(*b) = ft_rrb((*b));
+}
+
+void	ft_rr(t_num **a, t_num **b)
+{
+	(*a) = ft_ra((*a));
+	(*b) = ft_ra((*b));
+}

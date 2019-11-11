@@ -25,7 +25,8 @@ NAME_C = ft_is_upper.c ft_isdigit.c ft_lstadd.c ft_lstmap.c \
          ft_bzero.c ft_isascii.c ft_list_last.c ft_lstiter.c \
          ft_memccpy.c ft_memdel.c ft_putchar.c ft_putnbr.c \
          ft_strcat.c ft_strcpy.c ft_striter.c ft_strlen.c \
-         ft_strncmp.c ft_strnstr.c ft_strsub.c ft_tolower.c
+         ft_strncmp.c ft_strnstr.c ft_strsub.c ft_tolower.c \
+         ft_strequally.c get_next_line.c
 
 NAME_O = ft_is_upper.o ft_isdigit.o ft_lstadd.o ft_lstmap.o \
          ft_memchr.o ft_memmove.o ft_putchar_fd.o ft_putnbr_fd.o \
@@ -42,14 +43,15 @@ NAME_O = ft_is_upper.o ft_isdigit.o ft_lstadd.o ft_lstmap.o \
          ft_bzero.o ft_isascii.o ft_list_last.o ft_lstiter.o \
          ft_memccpy.o ft_memdel.o ft_putchar.o ft_putnbr.o \
          ft_strcat.o ft_strcpy.o ft_striter.o ft_strlen.o \
-         ft_strncmp.o ft_strnstr.o ft_strsub.o ft_tolower.o
+         ft_strncmp.o ft_strnstr.o ft_strsub.o ft_tolower.o \
+         ft_strequally.o get_next_line.o
 
 NAME = libft.a
 
 all: $(NAME)
 
 $(NAME):
-	gcc -Wall -Wextra -Werror -I libft.h -c $(NAME_C)
+	gcc -I libft.h -c $(NAME_C)
 	ar rc $(NAME) $(NAME_O)
 	ranlib $(NAME)
 
@@ -59,4 +61,4 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 
-re: fclean all
+re: fclean all clean
