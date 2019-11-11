@@ -18,6 +18,7 @@
 # include <unistd.h>
 # define FT_ULONG_MAX	((unsigned long)(~0L))
 # define FT_LONG_MAX	((long)(FT_ULONG_MAX >> 1))
+#define BUFF_SIZE 4096
 
 typedef struct		s_list
 {
@@ -93,4 +94,6 @@ void				ft_push_back(t_list **alst,
 int					ft_struct_len(t_list *lst);
 int					ft_isupper(char c);
 t_list				*ft_list_last(t_list *lst);
+int					ft_stequally(char *str1, char *str2);
+int			get_next_line(const int fd, char **line);
 #endif

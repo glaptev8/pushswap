@@ -66,16 +66,11 @@ int		ft_abs(int n)
 int		ft_direction(int x, int d, int m, int y)
 {
 	int to;
+
 	if (x > d && x > m)
-	{
-		if (m < d)
-			d = m;
-	}
+		m < d ? d = m : 0;
 	else if (d > x && d > m)
-	{
-		if (m < x)
-			x = m;
-	}
+		m < x ? x = m : 0;
 	else if (m > d && m > x)
 	{
 		if (d < x)
@@ -84,16 +79,9 @@ int		ft_direction(int x, int d, int m, int y)
 			d = m;
 	}
 	if (x > d)
-	{
-		if (y - x < d)
-			to = 2;
-		else
-			to = 1;
-	}
+		to = y - x < d ? 2 : 1;
 	else if (y - d <= x - 1 || d == y)
-	{
 		to = 2;
-	}
 	else
 		to = 1;
 	return (to);
@@ -101,29 +89,6 @@ int		ft_direction(int x, int d, int m, int y)
 
 void	*ft_pushb_a(t_num *b, t_num **a)
 {
-//	if (b && b->index == -1)
-//	{
-//		while (b != NULL)
-//		{
-//			a = ft_pa(a, &b);
-//			ft_print(a, b);
-//			if (b && b->prev && b->num > b->prev->num)
-//			{
-//				b = ft_rrb(b);
-//				ft_print(a, b);
-//			}
-//			if (a->num > a->prev->num)
-//			{
-//				a = ft_ra(a);
-//				ft_print(a, b);
-//			}
-//			if (a->num > a->next->num)
-//			{
-//				a = ft_sa(a);
-//				ft_print(a, b);
-//			}
-//		}
-//	}
 	while (b != NULL)
 	{
 		(*a) = ft_pa((*a), &b);
@@ -256,12 +221,21 @@ int		get_struct_len(t_num *a)
 	return (i);
 }
 
-t_num *ft_oper(t_num *a, t_num **b)
+t_num	*step(int to, int min, t_num *a)
 {
-	int min;
-	int z;
-	int max;
+	if (to == 1 && a->num != min)
+		a = ft_ra(a);
+	else if (a->num != min)
+		a = ft_rra(a);
+	return (a);
+}
+
+t_num	*ft_sort(t_num *a, t_num **b)
+{
 	int to;
+	int max;
+	int z;
+	int min;
 
 	min = get_min(a);
 	z = get_second_min(a, min);
@@ -283,17 +257,17 @@ t_num *ft_oper(t_num *a, t_num **b)
 			ft_print(a, (*b));
 			break;
 		}
-		if (to == 1 && a->num != min)
-		{
-			a = ft_ra(a);
-			ft_print(a, (*b));
-		}
-		else if (a->num != min)
-		{
-			a = ft_rra(a);
-			ft_print(a, (*b));
-		}
+		a = step(to, min, a);
 	}
+	return (a);
+}
+
+t_num *ft_oper(t_num *a, t_num **b)
+{
+	int min;
+
+	min = get_min(a);
+	a = ft_sort(a, b);
 	if (a->num == min && !stacks_is_sort(a, (*b)))
 	{
 		(*b) = ft_pb(&a, (*b));
@@ -360,7 +334,7 @@ int main(int argc, char **argv)
 	int n[500];
 	int i = 0;
 	int j;
-//
+
 	while (i < 500)
 	{
 		srand(time(NULL));
@@ -381,10 +355,10 @@ int main(int argc, char **argv)
 	t_num *a;
 	t_num *b;
 
-	a = lst_new(100);
+	a = lst_new(10);
 //	if (ft_init_stack(&a, argc, argv) == 0)
 //		ft_putstr_fd("Error\n", 2);
-	while (i < 100)
+	while (i < 10)
 	{
 		a->num = n[i];
 		printf("%d  ", a->num);
@@ -392,8 +366,8 @@ int main(int argc, char **argv)
 		i++;
 	}
 	printf("\n");
-	b = lst_new(0);
-	b = NULL;
+//	b = lst_new(0);
+//	b = NULL;
 	a = push_swap(a, b);
 	ft_display_a(a);
 	printf("(%d)", count);

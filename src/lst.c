@@ -5,6 +5,8 @@ t_num	*lst_create(void)
 	t_num *lst;
 
 	lst = (t_num *)malloc(sizeof(t_num));
+	if (!lst)
+		return (NULL);
 	lst->index = -1;
 	lst->num = 0;
 	lst->next = NULL;
@@ -20,15 +22,21 @@ t_num	*lst_new(int len)
 	if (len == 0)
 	{
 		lst = lst_create();
+		if (lst == NULL)
+			return (NULL);
 		lst->next = lst;
 		lst->prev = lst;
 		return (lst);
 	}
 	lst = lst_create();
+	if (lst == NULL)
+		return (NULL);
 	tmp = lst;
 	while (--len > 0)
 	{
 		lst->next = lst_create();
+		if (lst->next == NULL)
+			return (NULL);
 		lst->next->prev = lst;
 		lst = lst->next;
 	}
