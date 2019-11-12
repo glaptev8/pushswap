@@ -28,7 +28,8 @@ t_num	*lst_new(int len)
 		lst->prev = lst;
 		return (lst);
 	}
-	lst = lst_create();
+	else
+		lst = lst_create();
 	if (lst == NULL)
 		return (NULL);
 	tmp = lst;

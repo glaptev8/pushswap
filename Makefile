@@ -1,2 +1,2 @@
 all:
-	gcc ./src/*.c libft/libft.a -I ./includes/push_swap.h -o push_swap
+	gcc ./src/*.c ./overall/*.c libft/libft.a libftprintf.a -I ./includes/push_swap.h -o push_swap

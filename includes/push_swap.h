@@ -3,7 +3,8 @@
 
 #include <string.h>
 #include <stdlib.h>
-
+#include <unistd.h>
+#include "../libft/libft.h"
 int count;
 
 typedef struct		s_num
@@ -32,4 +33,17 @@ t_num		*ft_pa(t_num *a, t_num **b);
 t_num		*ft_pb(t_num **a, t_num *b);
 void	ft_rr(t_num **a, t_num **b);
 void	ft_rrr(t_num **a, t_num **b);
+int		get_second_min(t_num *a, int min);
+int		get_max(t_num *a);
+int		get_min(t_num *a);
+int		get_struct_len(t_num *a);
+int			ft_is_number(char *num);
+int				ft_init_stack(t_num **stacks, int ac, char **av);
+int		get_pos(t_num *a, int n);
+int		ft_direction(int x, int d, int m, int y);
+t_num	*ft_oper(t_num *a, t_num **b);
+int		sort_one(t_num **a, t_num *b);
+t_num	*step(int to, int min, t_num *a);
+void	ft_print(t_num *a, t_num *b);
+int			ft_printf(const char *format, ...);
 #endif

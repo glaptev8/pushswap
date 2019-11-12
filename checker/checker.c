@@ -55,43 +55,6 @@ int				ft_init_stack(t_num **stacks, int ac, char **av)
 	return (1);
 }
 
-void	ft_print(t_num *a, t_num *b)
-{
-	int o;
-	int d;
-
-	o = a->num;
-	write(1, "\e[1;1H\e[2J", 11);
-	printf("%-8s stack2\n", "stack1");
-	printf("%-9d", o);
-	if (a->next)
-		a = a->next;
-	if (b)
-	{
-		d = b->num;
-		printf("%d", d);
-		b = b->next;
-	}
-	printf("\n");
-	while (a->num != o || (b && b->next && b->num != d))
-	{
-		if (a->num != o)
-		{
-			printf("%-9d", a->num);
-			a = a->next;
-		}
-		else printf("         ");
-		if (b && b->index == -1 && b->next && b->num != d)
-		{
-			printf("%d", b->num);
-		}
-		if (b && b->next && b->num != d)
-			b = b->next;
-		printf("\n");
-	}
-	printf("---------------------------------\n");
-}
-
 int main(int argc, char **argv)
 {
 	t_num *a;
@@ -141,8 +104,8 @@ int main(int argc, char **argv)
 		free(com);
 	}
 	if (!stacks_is_sort(a, b))
-		printf("KO\n");
+		ft_printf("KO\n");
 	else
-		printf("OK\n");
+		ft_printf("OK\n");
 	return (0);
 }
