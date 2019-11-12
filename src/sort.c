@@ -46,7 +46,7 @@ t_num	*ft_sort(t_num *a, t_num **b)
 			ft_print(a, (*b));
 			break;
 		}
-		if ((*b) && (*b)->next && a->num == max && !stacks_is_sort(a, (*b)))
+		if (a->num == max && !stacks_is_sort(a, (*b)))
 		{
 			(*b) = ft_pb(&a, (*b));
 			ft_print(a, (*b));

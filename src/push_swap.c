@@ -75,7 +75,8 @@ t_num	*push_swap(t_num *a, t_num **b)
 			break ;
 		a = ft_oper(a, b);
 	}
-	return (ft_pushb_a((*b), &a));
+    ft_pushb_a((*b), &a);
+	return (a);
 }
 
 int main(int argc, char **argv)
@@ -84,7 +85,8 @@ int main(int argc, char **argv)
 	int n[500];
 	int i = 0;
 	int j;
-//
+    t_num *q;
+
 	while (i < 500)
 	{
 		srand(time(NULL));
@@ -105,34 +107,33 @@ int main(int argc, char **argv)
 	t_num *a;
 	t_num *b;
 
-	a = lst_new(9);
+	a = lst_new(10);
+	q = a;
 	if (ft_init_stack(&a, argc, argv) == 0)
 		ft_putstr_fd("Error\n", 2);
-//	while (i < 9)
+//	while (i < 10)
 //	{
 //		a->num = n[i];
-//		ft_printf("%d  ", a->num);
+//		printf("%d  ", a->num);
 //		a = a->next;
 //		i++;
 //	}
-//	ft_printf("\n\n\n");
+    i = 9;
+	printf("\n");
 //	b = lst_new(0);
 //	b = NULL;
 	a = push_swap(a, &b);
 	ft_display_a(a);
-	i = 9;
-	while (--i > 0)
-	{
-		free(a);
-		a = a->next;
-	}
-//	free(a->next);
-//	free(a->next->next);
-	free(a);
-//	ft_printf("(%d)", count);
-//	i = 500;
-//	free(b->next);
-//	free(b->prev);
-//	free(b);
+    while (i-- > 0 && q->next)
+    {
+        free(q->prev);
+        q = q->next;
+    }
+//    free(a->next);
+//    free(a->prev);
+    free(q);
+    free(q->next);
+    free(q->prev);
+	printf("(%d)", count);
 	return 1;
 }

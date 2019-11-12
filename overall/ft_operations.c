@@ -53,8 +53,8 @@ t_num		*ft_rrb(t_num *b)
 
 t_num		*ft_pb(t_num **a, t_num *b)
 {
-	count++;
-	b = lst_add(b, (*a)->num);
+    count++;
+    b = lst_add(b, (*a)->num);
 	(*a) = lst_remove((*a));
 	return (b);
 
