@@ -20,7 +20,7 @@ void	ft_print(t_num *a, t_num *b)
 	ft_printf("\n");
 	while (a->num != o || (b && b->next && b->num != d))
 	{
-		if (a->num != o)
+		if (a->num != o && a->next)
 		{
 			ft_printf("%-9d", a->num);
 			a = a->next;
