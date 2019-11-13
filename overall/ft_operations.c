@@ -55,9 +55,8 @@ t_num		*ft_pb(t_num **a, t_num *b)
 {
     count++;
     b = lst_add(b, (*a)->num);
-	(*a) = lst_remove((*a));
+	lst_remove(a);
 	return (b);
-
 }
 
 t_num		*ft_pa(t_num *a, t_num **b)
@@ -67,9 +66,11 @@ t_num		*ft_pa(t_num *a, t_num **b)
 	count++;
 	a = lst_add(a, (*b)->num);
 	if ((*b)->next)
-		(*b) = lst_remove((*b));
+		lst_remove(b);
 	else
-		(*b) = NULL;
+	{
+		b = NULL;
+	}
 	return (a);
 }
 

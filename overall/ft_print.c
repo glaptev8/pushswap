@@ -15,7 +15,8 @@ void	ft_print(t_num *a, t_num *b)
 	{
 		d = b->num;
 		ft_printf("%d", d);
-		b = b->next;
+		if (b->next)
+			b = b->next;
 	}
 	ft_printf("\n");
 	while (a->num != o || (b && b->next && b->num != d))

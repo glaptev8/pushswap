@@ -73,17 +73,19 @@ t_num	*lst_add(t_num *a, int n)
 	return (b);
 }
 
-t_num *lst_remove(t_num *a)
+t_num *lst_remove(t_num **a)
 {
 	t_num *b;
 
-	b = a->next;
-	b->prev = b->prev->prev;
-	b->prev->next = b;
-	if (b == b->next && b == b->prev)
-	{
-		b->prev = NULL;
-		b->next = NULL;
-	}
-	return (b);
+	b = *a;
+	*a = b->next;
+	(*a)->prev = b->prev;
+	(*a)->prev->next = b->next;
+	free(b);
+//	if (b == b->next && b == b->prev)
+//	{
+//		b->prev = NULL;
+//		b->next = NULL;
+//	}
+	return ((*a));
 }
