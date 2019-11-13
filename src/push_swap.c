@@ -66,17 +66,9 @@ void	ft_display_a(t_num *a)
 	ft_printf ("\n");
 }
 
-t_num	*push_swap(t_num *a, t_num **b)
+t_num	*push_swap(t_num *a)
 {
-	int i = 9;
-	while (a->next != NULL && !stacks_is_sort(a, (*b)) && --i > 0)
-	{
-		if (!sort_one(&a, (*b)))
-			break ;
-		a = ft_oper(a, b);
-	}
-    ft_pushb_a((*b), &a);
-	return (a);
+
 }
 
 int main(int argc, char **argv)
@@ -85,7 +77,7 @@ int main(int argc, char **argv)
 	int n[500];
 	int i = 0;
 	int j;
-    t_num *q;
+	t_num *a;
 
 	while (i < 500)
 	{
@@ -103,37 +95,13 @@ int main(int argc, char **argv)
 		}
 		i++;
 	}
+	int i;
 	i = 0;
-	t_num *a;
-	t_num *b;
-
-	a = lst_new(10);
-	q = a;
-	if (ft_init_stack(&a, argc, argv) == 0)
-		ft_putstr_fd("Error\n", 2);
-//	while (i < 10)
-//	{
-//		a->num = n[i];
-//		printf("%d  ", a->num);
-//		a = a->next;
-//		i++;
-//	}
-    i = 9;
-	printf("\n");
-//	b = lst_new(0);
-//	b = NULL;
-	a = push_swap(a, &b);
-	ft_display_a(a);
-    while (i-- > 0 && q->next)
-    {
-        free(q->prev);
-        q = q->next;
-    }
-//    free(a->next);
-//    free(a->prev);
-    free(q);
-    free(q->next);
-    free(q->prev);
-	printf("(%d)", count);
-	return 1;
+	a = lst_new(5);
+	while (i++ < 5)
+	{
+		a->num = n[i];
+		a = a->next;
+	}
+	push_swap(a);
 }
