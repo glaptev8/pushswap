@@ -79,27 +79,48 @@ int main(int argc, char **argv)
 			if (b)
 				b = ft_sb(b);
 		}
-			else if (!ft_strcmp(com, "ra"))
-				a = ft_ra(a);
-			else if (!ft_strcmp(com, "rb"))
-				b = ft_rb(b);
-			else if (!ft_strcmp(com, "rra"))
-				a = ft_rra(a);
-			else if (!ft_strcmp(com, "rrb"))
-				b = ft_rrb(b);
-			else if (!ft_strcmp(com, "pb"))
-				b = ft_pb(&a, b);
-			else if (!ft_strcmp(com, "pa"))
-				a = ft_pa(a, &b);
-			else if (!ft_strcmp(com, "rrr"))
-				ft_rrr(&a, &b);
-			else if (!ft_strcmp(com, "rr"))
-				ft_rr(&a, &b);
-			else
+		else if (!ft_strcmp(com, "ra"))
+			a = ft_ra(a);
+		else if (!ft_strcmp(com, "rb"))
+			b = ft_rb(b);
+		else if (!ft_strcmp(com, "rra"))
+			a = ft_rra(a);
+		else if (!ft_strcmp(com, "rrb"))
+			b = ft_rrb(b);
+		else if (!ft_strcmp(com, "pb"))
+		{
+			if (a && a->next && a->next != a)
 			{
-				ft_putstr_fd("Error\n", 2);
-				return (0);
+				b = ft_pb(&a, b);
 			}
+			else if (a)
+			{
+				b = lst_add(b, a->num);
+				a = NULL;
+				free(a);
+			}
+		}
+		else if (!ft_strcmp(com, "pa"))
+		{
+			if (b && b->next && b->next != b)
+				a = ft_pa(a, &b);
+			else if (b)
+			{
+				a = lst_add(a, b->num);
+				b = NULL;
+				free(b);
+			}
+		}
+		else if (!ft_strcmp(com, "rrr"))
+			ft_rrr(&a, &b);
+		else if (!ft_strcmp(com, "rr"))
+			ft_rr(&a, &b);
+		else
+		{
+			ft_putstr_fd("Error\n", 2);
+			free(com);
+			return (0);
+		}
 		ft_print(a, b);
 		free(com);
 	}
@@ -107,5 +128,11 @@ int main(int argc, char **argv)
 		ft_printf("KO\n");
 	else
 		ft_printf("OK\n");
+//	printf("(%d)", get_struct_len(a) + 1);
+	clear(&a, get_struct_len(a) + 1);
+	if (!b || ((b && !b->next) || (b && b->next && b->next == b) ))
+		free(b);
+	else
+		clear(&b, get_struct_len(b) + 1);
 	return (0);
 }
