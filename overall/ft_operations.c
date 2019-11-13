@@ -2,6 +2,7 @@
 
 t_num		*ft_sa(t_num *a)
 {
+	printf("sa\n");
 	count++;
 	int num;
 
@@ -13,6 +14,7 @@ t_num		*ft_sa(t_num *a)
 
 t_num		*ft_sb(t_num *b)
 {
+	printf("sb\n");
 	count++;
 	int num;
 
@@ -24,6 +26,7 @@ t_num		*ft_sb(t_num *b)
 
 t_num		*ft_ra(t_num *a)
 {
+	printf("ra\n");
 	count++;
 	a = a->next;
 	return (a);
@@ -31,6 +34,7 @@ t_num		*ft_ra(t_num *a)
 
 t_num		*ft_rb(t_num *b)
 {
+	printf("rb\n");
 	count++;
 	if (b->next)
 		b = b->next;
@@ -39,6 +43,7 @@ t_num		*ft_rb(t_num *b)
 
 t_num		*ft_rra(t_num *a)
 {
+	printf("rra\n");
 	count++;
 	a = a->prev;
 	return (a);
@@ -46,6 +51,7 @@ t_num		*ft_rra(t_num *a)
 
 t_num		*ft_rrb(t_num *b)
 {
+	printf("rrb\n");
 	count++;
 	b = b->prev;
 	return (b);
@@ -53,6 +59,7 @@ t_num		*ft_rrb(t_num *b)
 
 t_num		*ft_pb(t_num **a, t_num *b)
 {
+	printf("pb\n");
     count++;
     b = lst_add(b, (*a)->num);
 	lst_remove(a);
@@ -63,6 +70,7 @@ t_num		*ft_pa(t_num *a, t_num **b)
 {
 	int n;
 
+	printf("pa\n");
 	count++;
 	a = lst_add(a, (*b)->num);
 	if ((*b)->next)
