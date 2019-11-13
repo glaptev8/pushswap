@@ -18,6 +18,7 @@ typedef struct		s_num
 
 t_num	*lst_new(int len);
 t_num	*lst_create(void);
+void    ft_display_a(t_num *a);
 t_num		*ft_sa(t_num *a);
 t_num		*ft_rra(t_num *a);
 t_num		*ft_pa(t_num *a, t_num **b);

@@ -39,22 +39,21 @@ void	ft_pushb_a(t_num **b, t_num **a)
 {
 	int		q;
 
-//	if ((*b)->next)
-//		(*b) = (*b)->next;
 	q = get_struct_len((*b));
+	printf("\n");
+	ft_display_a((*b));
+	printf("\n");
 	while (--q >= 0)
 	{
 		(*a) = ft_pa((*a), b);
 		ft_print((*a), (*b));
 		if (q >= 0)
 		{
-			printf("\n(%d)\n", (*b)->num);
-			if ((*b) && (*b)->prev && (*b)->num > (*b)->prev->num)
-			{
-//				printf("\n(%d)\n", (*b)->num);
+			if ((*b) && (*b)->prev && (*b)->num > (*b)->prev->num && ((*b)->num > (*a)->prev->num)) {
 				(*b) = (*b)->prev;
 				ft_print((*a), (*b));
 			}
+		}
 			if ((*a)->num > (*a)->prev->num)
 			{
 				(*a)= ft_ra((*a));
@@ -65,23 +64,22 @@ void	ft_pushb_a(t_num **b, t_num **a)
 				(*a)= ft_sa((*a));
 				ft_print((*a), (*b));
 			}
-		}
 	}
-//	(*a) = lst_add((*a), (*b)->num);
-//	ft_print((*a), (*b));
-//	if ((*a)->num > (*a)->prev->num)
-//	{
-//		(*a)= ft_ra((*a));
-//		ft_print((*a), (*b));
-//	}
-//	if ((*a)->num > (*a)->next->num)
-//	{
-//		(*a)= ft_sa((*a));
-//		ft_print((*a), (*b));
-//	}
-//	free(*b);
-//	b = NULL;
-//	free(b);
+	(*a) = lst_add((*a), (*b)->num);
+	ft_print((*a), (*b));
+	if ((*a)->num > (*a)->prev->num)
+	{
+		(*a)= ft_ra((*a));
+		ft_print((*a), (*b));
+	}
+	if ((*a)->num > (*a)->next->num)
+	{
+		(*a)= ft_sa((*a));
+		ft_print((*a), (*b));
+	}
+	free(*b);
+	b = NULL;
+	free(b);
 }
 
 void	ft_display_a(t_num *a)
@@ -110,12 +108,10 @@ void	push_swap(t_num **a)
 //	b = ft_pb(a, b);
 //	(*a) = ft_pa((*a), &b);
 //	b = ft_pb(&q, b);
+	if (!sort_one(a, b))
+		return ;
 	while ((*a)->next != (*a) && !stacks_is_sort((*a), b))
-	{
-		if (!sort_one(a, b))
-			return ;
 		ft_oper(a, &b);
-	}
 	ft_pushb_a(&b, a);
 }
 
@@ -144,22 +140,23 @@ int main(int argc, char **argv)
 		i++;
 	}
 	i = 0;
-	a = lst_new(5);
-	if (ft_init_stack(&a, argc, argv) == 0)
-		ft_putstr_fd("Error\n", 2);
-//	while (i++ < 5)
-//	{
-//		a->num = n[i];
-//		printf("%d  ", a->num);
-//		a = a->next;
-//	}
+	a = lst_new(100);
+//	if (ft_init_stack(&a, argc, argv) == 0)
+//		ft_putstr_fd("Error\n", 2);
+	while (i++ < 100)
+	{
+		a->num = n[i];
+		printf("%d  ", a->num);
+		a = a->next;
+	}
 	printf("\n");
 	push_swap(&a);
 //	printf("%d", a->prev->num);
 	ft_display_a(a);
-	clear(&a, 4);
+	clear(&a, 100);
 //	a = NULL;
 //	if (a)
 //		ft_display_a(a);
+	printf("\n%d", count);
 	return (1);
 }
