@@ -9,17 +9,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4e00ad1-da46-41d1-a6f2-52ceb5ace954" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/push_swap.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/push_swap.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/push_swap.h.gch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/overall/ft_operations.c" beforeDir="false" afterPath="$PROJECT_DIR$/overall/ft_operations.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/overall/ft_print.c" beforeDir="false" afterPath="$PROJECT_DIR$/overall/ft_print.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/push_swap" beforeDir="false" afterPath="$PROJECT_DIR$/push_swap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lst.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/lst.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/push_swap.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/push_swap.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sort.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/sort.c" afterDir="false" />
-    </list>
+    <list default="true" id="b4e00ad1-da46-41d1-a6f2-52ceb5ace954" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -144,7 +144,6 @@ int main(int argc, char **argv)
 		i++;
 	}
 	i = 0;
-
 	a = lst_new(5);
 	if (ft_init_stack(&a, argc, argv) == 0)
 		ft_putstr_fd("Error\n", 2);
