@@ -40,9 +40,6 @@ void	ft_pushb_a(t_num **b, t_num **a)
 	int		q;
 
 	q = get_struct_len((*b));
-	printf("\n");
-	ft_display_a((*b));
-	printf("\n");
 	while (--q >= 0)
 	{
 		(*a) = ft_pa((*a), b);
@@ -140,10 +137,10 @@ int main(int argc, char **argv)
 		i++;
 	}
 	i = 0;
-	a = lst_new(100);
+	a = lst_new(7);
 //	if (ft_init_stack(&a, argc, argv) == 0)
 //		ft_putstr_fd("Error\n", 2);
-	while (i++ < 100)
+	while (i++ < 7)
 	{
 		a->num = n[i];
 		printf("%d  ", a->num);
@@ -153,7 +150,7 @@ int main(int argc, char **argv)
 	push_swap(&a);
 //	printf("%d", a->prev->num);
 	ft_display_a(a);
-	clear(&a, 100);
+	clear(&a, 7);
 //	a = NULL;
 //	if (a)
 //		ft_display_a(a);
