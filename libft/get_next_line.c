@@ -50,6 +50,9 @@ int		get_next_line(const int fd, char **line)
 	if (ret < 0)
 		return (-1);
 	if (ret == 0 && (!str[fd] || (str[fd] && str[fd][0] == '\0')))
+	{
+		free(str[fd]);
 		return (0);
+	}
 	return (new_str(str, fd, line));
 }
