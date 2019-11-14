@@ -121,7 +121,8 @@ int main(int argc, char **argv)
 			free(com);
 			return (0);
 		}
-		ft_print(a, b);
+		if (!ft_strcmp(argv[1], "-v"))
+			ft_print(a, b);
 		free(com);
 	}
 	if (!stacks_is_sort(a, b))
