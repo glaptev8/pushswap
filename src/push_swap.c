@@ -1,16 +1,6 @@
 #include "../includes/push_swap.h"
 #include <stdlib.h>
 
-void	clear(t_num **t, int n)
-{
-	while (--n > 0 && (*t)->next)
-	{
-		(*t) = (*t)->next;
-		free((*t)->prev);
-	}
-	free((*t));
-}
-
 int		ft_direction(int x, int d, int m, int y)
 {
 	int to;
@@ -99,12 +89,6 @@ void	push_swap(t_num **a)
 {
 	t_num *b;
 
-//	b = ft_pb(a, b);
-//	b = ft_pb(a, b);
-//	b = ft_pb(a, b);
-//	b = ft_pb(a, b);
-//	(*a) = ft_pa((*a), &b);
-//	b = ft_pb(&q, b);
 	if (!sort_one(a, b))
 		return ;
 	while ((*a)->next != (*a) && !stacks_is_sort((*a), b))
@@ -138,8 +122,6 @@ int main(int argc, char **argv)
 	}
 	i = 0;
 	a = lst_new(7);
-//	if (ft_init_stack(&a, argc, argv) == 0)
-//		ft_putstr_fd("Error\n", 2);
 	while (i++ < 7)
 	{
 		a->num = n[i];
@@ -148,12 +130,8 @@ int main(int argc, char **argv)
 	}
 	printf("\n");
 	push_swap(&a);
-//	printf("%d", a->prev->num);
 	ft_display_a(a);
 	clear(&a, 7);
-//	a = NULL;
-//	if (a)
-//		ft_display_a(a);
 	printf("\n%d", count);
 	return (1);
 }

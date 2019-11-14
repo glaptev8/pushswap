@@ -10,10 +10,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4e00ad1-da46-41d1-a6f2-52ceb5ace954" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/overall/ft_init_stack.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/ft_init_stack.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/overall/ft_is_num.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/ft_is_num.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/overall/stack_is_sort.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/stack_is_sort.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lst.c" beforeDir="false" afterPath="$PROJECT_DIR$/overall/lst.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/check/checker.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/check/finish_checker.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/check/has_dublicat.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/checker/a.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/checker/a.out.dSYM/Contents/Info.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/checker/a.out.dSYM/Contents/Resources/DWARF/a.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/checker/checker.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/checker/ft_operations.c" beforeDir="false" afterPath="$PROJECT_DIR$/check/ft_operations.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/push_swap.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/push_swap.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/libft/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/ft_atoi.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/ft_atoi.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/ft_strjoin.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/ft_strjoin.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/ft_strnew 2.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/get_next_line.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/get_next_line.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/libft.a" beforeDir="false" afterPath="$PROJECT_DIR$/libft/libft.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/libft.h" beforeDir="false" afterPath="$PROJECT_DIR$/libft/libft.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/libft.h.gch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/overall/clear.c" beforeDir="false" afterPath="$PROJECT_DIR$/overall/clear.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/overall/ft_init_stack.c" beforeDir="false" afterPath="$PROJECT_DIR$/overall/ft_init_stack.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/overall/ft_print.c" beforeDir="false" afterPath="$PROJECT_DIR$/overall/ft_print.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/push_swap" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/push_swap.dSYM/Contents/Info.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/push_swap.dSYM/Contents/Resources/DWARF/push_swap" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ft_operations.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/ft_oper.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/push_swap.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/push_swap.c" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,6 +46,9 @@
   </component>
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="pushswap" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -46,7 +72,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="dynamic.analysis.tools.valgrind" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.CMake" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -85,6 +111,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

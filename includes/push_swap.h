@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "../libft/libft.h"
+
 int count;
 
 typedef struct		s_num
@@ -46,4 +47,7 @@ int		sort_one(t_num **a, t_num *b);
 void	step(int to, int min, t_num **a);
 void	ft_print(t_num *a, t_num *b);
 int			ft_printf(const char *format, ...);
+void	clear(t_num **t, int n);
+void	finish_check(t_num **a, t_num **b);
+int		check_step3(char *com, t_num **a, t_num **b);
 #endif

@@ -41,7 +41,7 @@ char				*ft_strnstr(const char *haystack,
 		const char *needle, size_t len);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
-int					ft_atoi(const char *str);
+long int			ft_atoi(const char *str);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);
@@ -95,5 +95,5 @@ int					ft_struct_len(t_list *lst);
 int					ft_isupper(char c);
 t_list				*ft_list_last(t_list *lst);
 int					ft_stequally(char *str1, char *str2);
-int			get_next_line(const int fd, char **line);
+int					get_next_line(const int fd, char **line);
 #endif
