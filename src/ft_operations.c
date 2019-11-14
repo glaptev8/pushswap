@@ -2,58 +2,74 @@
 
 t_num		*ft_sa(t_num *a)
 {
-	printf("sa\n");
-	count++;
-	int num;
-
-	num = a->num;
-	a->num = a->next->num;
-	a->next->num = num;
+	if (a && a->next && a != a->next)
+	{
+		printf("sa\n");
+		count++;
+		int num;
+		num = a->num;
+		a->num = a->next->num;
+		a->next->num = num;
+	}
 	return (a);
 }
 
 t_num		*ft_sb(t_num *b)
 {
-	printf("sb\n");
-	count++;
 	int num;
 
-	num = b->num;
-	b->num = b->next->num;
-	b->next->num = num;
+	if (b && b->next && b->next != b)
+	{
+		printf("sb\n");
+		count++;
+		num = b->num;
+		b->num = b->next->num;
+		b->next->num = num;
+	}
 	return (b);
 }
 
 t_num		*ft_ra(t_num *a)
 {
-	printf("ra\n");
-	count++;
-	a = a->next;
+	if (a && a->next && a->next != a)
+	{
+		printf("ra\n");
+		count++;
+		a = a->next;
+	}
 	return (a);
 }
 
 t_num		*ft_rb(t_num *b)
 {
-	printf("rb\n");
-	count++;
-	if (b->next)
+	if (b && b->next && b->next != b)
+	{
+		printf("rb\n");
+		count++;
 		b = b->next;
+	}
 	return (b);
 }
 
 t_num		*ft_rra(t_num *a)
 {
-	printf("rra\n");
-	count++;
-	a = a->prev;
+	if (a && a->prev && a->prev != a)
+	{
+		printf("rra\n");
+		count++;
+		a = a->prev;
+	}
 	return (a);
 }
 
 t_num		*ft_rrb(t_num *b)
 {
-	printf("rrb\n");
-	count++;
-	b = b->prev;
+	if (b && b->prev && b->prev != b)
+	{
+		printf("rrb\n");
+		count++;
+		b = b->prev;
+	}
 	return (b);
 }
 
@@ -62,7 +78,8 @@ t_num		*ft_pb(t_num **a, t_num *b)
 	printf("pb\n");
     count++;
     b = lst_add(b, (*a)->num);
-	lst_remove(a);
+	if ((*a) && (*a)->next && (*a) != (*a)->next)
+		lst_remove(a);
 	return (b);
 }
 
@@ -75,10 +92,6 @@ t_num		*ft_pa(t_num *a, t_num **b)
 	a = lst_add(a, (*b)->num);
 	if ((*b)->next)
 		lst_remove(b);
-	else
-	{
-		b = NULL;
-	}
 	return (a);
 }
 
