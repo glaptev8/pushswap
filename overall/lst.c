@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lst.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tmelia <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/15 17:37:09 by tmelia            #+#    #+#             */
+/*   Updated: 2019/11/15 17:37:10 by tmelia           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/push_swap.h"
 
 t_num	*lst_create(void)
@@ -22,16 +34,12 @@ t_num	*lst_new(int len)
 	if (len == 0)
 	{
 		lst = lst_create();
-		if (lst == NULL)
-			return (NULL);
 		lst->next = lst;
 		lst->prev = lst;
 		return (lst);
 	}
 	else
 		lst = lst_create();
-	if (lst == NULL)
-		return (NULL);
 	tmp = lst;
 	while (--len > 0)
 	{
@@ -73,7 +81,7 @@ t_num	*lst_add(t_num *a, int n)
 	return (b);
 }
 
-t_num *lst_remove(t_num **a)
+t_num	*lst_remove(t_num **a)
 {
 	t_num *b;
 
@@ -82,10 +90,5 @@ t_num *lst_remove(t_num **a)
 	(*a)->prev = b->prev;
 	(*a)->prev->next = b->next;
 	free(b);
-//	if (b == b->next && b == b->prev)
-//	{
-//		b->prev = NULL;
-//		b->next = NULL;
-//	}
 	return ((*a));
 }

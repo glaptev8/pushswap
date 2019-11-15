@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   getters.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tmelia <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/15 17:36:51 by tmelia            #+#    #+#             */
+/*   Updated: 2019/11/15 17:36:54 by tmelia           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/push_swap.h"
 
 int		get_struct_len(t_num *a)
 {
-	t_num *q;
-	int i;
+	t_num	*q;
+	int		i;
 
 	i = 0;
 	q = a;
@@ -32,8 +44,8 @@ int		get_pos(t_num *a, int n)
 
 int		get_second_min(t_num *a, int min)
 {
-	int m;
-	t_num *q;
+	int		m;
+	t_num	*q;
 
 	m = a->num;
 	q = a->next;
@@ -47,11 +59,10 @@ int		get_second_min(t_num *a, int min)
 	return (m);
 }
 
-
 int		get_max(t_num *a)
 {
-	t_num *q;
-	int max;
+	t_num	*q;
+	int		max;
 
 	max = a->num;
 	q = a->next;
@@ -66,8 +77,8 @@ int		get_max(t_num *a)
 
 int		get_min(t_num *a)
 {
-	t_num *q;
-	int min;
+	t_num	*q;
+	int		min;
 
 	min = a->num;
 	q = a->next;
@@ -79,4 +90,3 @@ int		get_min(t_num *a)
 	}
 	return (min);
 }
-
