@@ -16,6 +16,9 @@ SRC_C_DIR = check/
 C_P_FILE =	push_swap.c \
 			sort.c \
 			ft_oper.c \
+			stack_push.c \
+			fresh.c \
+			ft_oper2.c
 
 C_O_FILE =	clear.c \
 			ft_init_stack.c \
@@ -28,7 +31,11 @@ C_O_FILE =	clear.c \
 
 C_C_FILE =	checker.c \
 			finish_checker.c \
-			ft_operations.c
+			ft_operations.c \
+			check_str.c \
+			ft_check_step.c \
+			valid_check.c \
+			ft_operations2.c
 
 C_P_FIND =		$(C_P_FILE:%=$(SRC_P_DIR)%)
 C_O_FIND = 		$(C_O_FILE:%=$(SRC_O_DIR)%)

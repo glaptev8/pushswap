@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tmelia <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/15 17:17:26 by tmelia            #+#    #+#             */
+/*   Updated: 2019/11/15 17:17:29 by tmelia           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/push_swap.h"
 #include <stdlib.h>
 
@@ -29,36 +41,27 @@ void	ft_pushb_a(t_num **b, t_num **a)
 {
 	int		q;
 
-	ft_print((*a), (*b));
 	q = get_struct_len((*b));
 	while (--q >= 0)
 	{
 		(*a) = ft_pa((*a), b);
-		ft_print((*a), (*b));
 		if (q >= 0)
 		{
-			if ((*b) && (*b)->prev && (*b)->num > (*b)->prev->num && ((*b)->num > (*a)->prev->num)) {
+			if ((*b) && (*b)->prev &&
+			(*b)->num > (*b)->prev->num && ((*b)->num > (*a)->prev->num))
 				(*b) = (*b)->prev;
-			}
 		}
-			if ((*a)->num > (*a)->prev->num)
-			{
-				(*a)= ft_ra((*a));
-			}
-			if ((*a)->num > (*a)->next->num)
-			{
-				(*a)= ft_sa((*a));
-			}
+		if ((*a)->num > (*a)->prev->num)
+			(*a) = ft_ra((*a));
+		if ((*a)->num > (*a)->next->num)
+			(*a) = ft_sa((*a));
 	}
 	(*a) = lst_add((*a), (*b)->num);
+	ft_printf("pa\n");
 	if ((*a)->num > (*a)->prev->num)
-	{
-		(*a)= ft_ra((*a));
-	}
+		(*a) = ft_ra((*a));
 	if ((*a)->num > (*a)->next->num)
-	{
-		(*a)= ft_sa((*a));
-	}
+		(*a) = ft_sa((*a));
 	free(*b);
 	b = NULL;
 	free(b);
@@ -69,7 +72,6 @@ void	ft_display_a(t_num *a)
 	int d;
 
 	d = a->num;
-
 	ft_printf("%d ", a->num);
 	a = a->next ? a->next : a;
 	while (a->next && a->num != d)
@@ -77,15 +79,17 @@ void	ft_display_a(t_num *a)
 		ft_printf("%d ", a->num);
 		a = a->next;
 	}
-	ft_printf ("\n");
+	ft_printf("\n");
 }
 
 void	push_swap(t_num **a)
 {
 	t_num *b;
 
-	if ((*a) && (*a)->num && (*a)->next && (*a)->next->num && (*a)->num > (*a)->next->num)
-			(*a) = ft_sa((*a));
+	b = NULL;
+	if ((*a) && (*a)->num && (*a)->next &&
+	(*a)->next->num && (*a)->num > (*a)->next->num)
+		*a = ft_sa(*a);
 	if (!sort_one(a, b))
 		return ;
 	while ((*a) && (*a)->next && (*a)->next != (*a) && !stacks_is_sort((*a), b))
@@ -94,77 +98,29 @@ void	push_swap(t_num **a)
 		ft_pushb_a(&b, a);
 }
 
-int main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
-	count = 0;
-	int n[500];
-	int i = 0;
-	int j;
-	char **s;
-	t_num *a;
-
-
-	argv++;
-	if (argc == 2 && ft_strchr(argv[0], ' '))
+	int		i;
+	char	**s;
+	t_num	*a;
+	s = NULL;
+	if (argc == 2)
 	{
-		s = ft_strsplit(argv[0], ' ');
-		argc = 0;
+		s = ft_strsplit(argv[1], ' ');
 		i = 0;
 		while (s[i])
 			i++;
 		argc = i;
 	}
-	else
-		argc--;
-	i = 0;
-	while (i < 500)
+	a = lst_new(argc);
+	if (stack_push(&a, argc, s ? s : argv) == 0)
 	{
-		srand(time(NULL));
-		j = 0;
-		n[i] = -100 + rand() % 1200;
-		while (j < i)
-		{
-			if (n[j] == n[i])
-			{
-				n[i] = -100 + rand() % 1200;
-				j = -1;
-			}
-			j++;
-		}
-		i++;
+		fresh(s);
+		return (0);
 	}
-	a = lst_new(500);
-//	if (ft_init_stack(&a, argc, s ? s : argv) == 0)
-//	{
-//		clear(&a, argc);
-//		ft_putstr_fd("Error\n", 2);
-//		return (0);
-//	}
-//	if (has_dublicat(s ? s : argv, argc) == -1)
-//	{
-//		clear(&a, argc - 1);
-//		ft_putstr_fd("Error\n", 2);
-//		return (0);
-//	}
-i = 0;
-	while (i < 500)
-	{
-		a->num = n[i];
-		printf("%d  ", a->num);
-		a = a->next;
-		i++;
-	}
-	printf("\n");
 	push_swap(&a);
-	ft_display_a(a);
-	clear(&a, 5);
-	printf("\n%d", count);
-	i = 0;
-	if (s)
-	{
-		while (s[i])
-			free(s[i++]);
-		free(s);
-	}
+//	ft_display_a(a);
+	clear(&a, argc);
+	fresh(s);
 	return (1);
 }

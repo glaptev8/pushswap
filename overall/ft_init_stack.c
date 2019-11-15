@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_init_stack.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tmelia <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/15 17:36:33 by tmelia            #+#    #+#             */
+/*   Updated: 2019/11/15 17:36:34 by tmelia           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/push_swap.h"
 
 int				ft_init_stack(t_num **stacks, int ac, char **av)
@@ -9,7 +21,6 @@ int				ft_init_stack(t_num **stacks, int ac, char **av)
 	i = 0;
 	while (i < ac)
 	{
-
 		if (ft_is_number(av[i]))
 		{
 			if (ft_atoi(av[i]) > 2147483647 ||
