@@ -45,11 +45,11 @@ void	ft_pushb_a(t_num **b, t_num **a)
 	while (--q >= 0)
 	{
 		(*a) = ft_pa((*a), b);
-		if (q >= 0)
+		if (q >= -1)
 		{
 			if ((*b) && (*b)->prev &&
 			(*b)->num > (*b)->prev->num && ((*b)->num > (*a)->prev->num))
-				(*b) = (*b)->prev;
+				(*b) = ft_rrb((*b));
 		}
 		if ((*a)->num > (*a)->prev->num)
 			(*a) = ft_ra((*a));

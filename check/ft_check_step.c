@@ -12,6 +12,25 @@
 
 #include "../includes/push_swap.h"
 
+int		is_a_sort(t_num *a)
+{
+	t_num *b;
+
+	b = a;
+	if (a && a->next && a->next == a)
+		return (1);
+	while (a && a->next && a->next != b)
+	{
+		if (a->num > a->next->num)
+		{
+			printf("%d   %d", a->num, a->next->num);
+			return (0);
+		}
+		a = a->next;
+	}
+	return (1);
+}
+
 int	ft_check_step(char *com, t_num **a, t_num **b, int flag)
 {
 	flag == 1 ? ft_print(*a, *b) : 0;
@@ -25,9 +44,9 @@ int	ft_check_step(char *com, t_num **a, t_num **b, int flag)
 			ft_print(*a, *b);
 		free(com);
 	}
-	if (!stacks_is_sort(*a, *b) || *b != NULL)
-		ft_printf("KO\n");
-	else
+	if (is_a_sort(*a) && !(*b))
 		ft_printf("OK\n");
+	else
+		ft_printf("KO\n");
 	return (1);
 }
