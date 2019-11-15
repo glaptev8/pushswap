@@ -5,13 +5,11 @@ int		sort_one(t_num **a, t_num *b)
 	if (stacks_is_sort((*a)->next, b))
 	{
 		(*a) = ft_ra((*a));
-		ft_print((*a), b);
 		return (0);
 	}
 	if (stacks_is_sort((*a)->prev, b))
 	{
 		(*a) = ft_rra((*a));
-		ft_print((*a), b);
 		return (0);
 	}
 	return (1);
@@ -40,18 +38,15 @@ void	ft_sort(t_num **a, t_num **b)
 	to = ft_direction(get_pos((*a), z), get_pos((*a), min), get_pos((*a), max), get_struct_len((*a)));
 	while ((*a)->num != min && !stacks_is_sort((*a), (*b)))
 	{
-		if ((*a)->num == z && !stacks_is_sort((*a), (*b)))
+		if ((*b) && get_struct_len(*a) > 1 && (*a)->num == z && !stacks_is_sort((*a), (*b)))
 		{
 			(*b) = ft_pb(a, (*b));
-			ft_print((*a), (*b));
 			break;
 		}
 		if ((*b) && (*a)->num == max && !stacks_is_sort((*a), (*b)))
 		{
 			(*b) = ft_pb(a, (*b));
-			ft_print((*a), (*b));
 			(*b) = ft_rb((*b));
-			ft_print((*a), (*b));
 			break;
 		}
 		step(to, min, a);
