@@ -32,37 +32,31 @@ void	ft_pushb_a(t_num **b, t_num **a)
 	q = get_struct_len((*b));
 	while (--q >= 0)
 	{
-		(*a) = ft_pa((*a), b);
 		ft_print((*a), (*b));
+		(*a) = ft_pa((*a), b);
 		if (q >= 0)
 		{
 			if ((*b) && (*b)->prev && (*b)->num > (*b)->prev->num && ((*b)->num > (*a)->prev->num)) {
 				(*b) = (*b)->prev;
-				ft_print((*a), (*b));
 			}
 		}
 			if ((*a)->num > (*a)->prev->num)
 			{
 				(*a)= ft_ra((*a));
-				ft_print((*a), (*b));
 			}
 			if ((*a)->num > (*a)->next->num)
 			{
 				(*a)= ft_sa((*a));
-				ft_print((*a), (*b));
 			}
 	}
 	(*a) = lst_add((*a), (*b)->num);
-	ft_print((*a), (*b));
 	if ((*a)->num > (*a)->prev->num)
 	{
 		(*a)= ft_ra((*a));
-		ft_print((*a), (*b));
 	}
 	if ((*a)->num > (*a)->next->num)
 	{
 		(*a)= ft_sa((*a));
-		ft_print((*a), (*b));
 	}
 	free(*b);
 	b = NULL;
@@ -121,17 +115,23 @@ int main(int argc, char **argv)
 		i++;
 	}
 	i = 0;
-	a = lst_new(7);
-	while (i++ < 7)
+	a = lst_new(3);
+	if (ft_init_stack(&a, argc, argv) == 0)
 	{
-		a->num = n[i];
-		printf("%d  ", a->num);
-		a = a->next;
+		clear(&a, 3);
+		ft_putstr_fd("Error\n", 2);
+		return (0);
 	}
+//	while (i++ < 7)
+//	{
+//		a->num = n[i];
+//		printf("%d  ", a->num);
+//		a = a->next;
+//	}
 	printf("\n");
 	push_swap(&a);
-	ft_display_a(a);
-	clear(&a, 7);
+	ft_print(a, a);
+	clear(&a, 3);
 	printf("\n%d", count);
 	return (1);
 }

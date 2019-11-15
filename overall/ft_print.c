@@ -5,11 +5,16 @@ void	ft_print(t_num *a, t_num *b)
 	int o;
 	int d;
 
-	o = a->num;
 	write(1, "\e[1;1H\e[2J", 11);
 	ft_printf("%-8s stack2\n", "stack1");
-	ft_printf("%-9d", o);
-	if (a->next)
+	if (a)
+	{
+		o = a->num;
+		ft_printf("%-9d", o);
+	}
+	else
+		ft_printf("         ");
+	if (a && a->next)
 		a = a->next;
 	if (b)
 	{
@@ -19,9 +24,9 @@ void	ft_print(t_num *a, t_num *b)
 			b = b->next;
 	}
 	ft_printf("\n");
-	while (a->num != o || (b && b->next && b->num != d))
+	while ((a && a->num != o) || (b && b->next && b->num != d))
 	{
-		if (a->num != o && a->next)
+		if (a && a->num != o && a->next)
 		{
 			ft_printf("%-9d", a->num);
 			a = a->next;
