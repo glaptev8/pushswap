@@ -38,15 +38,22 @@ void	ft_sort(t_num **a, t_num **b)
 	to = ft_direction(get_pos((*a), z), get_pos((*a), min), get_pos((*a), max), get_struct_len((*a)));
 	while ((*a)->num != min && !stacks_is_sort((*a), (*b)))
 	{
-		if ((*b) && get_struct_len(*a) > 1 && (*a)->num == z && !stacks_is_sort((*a), (*b)))
+		if (!sort_one(a, (*b)))
+			break;
+		if ((*b) && (*a)->num == z && !stacks_is_sort((*a), (*b)))
 		{
 			(*b) = ft_pb(a, (*b));
+//			if ((*a) && (*a)->num && (*a)->next && (*a)->next->num && (*a)->num > (*a)->next->num)
+//				(*a) = ft_sa((*a));
 			break;
 		}
-		if ((*b) && (*a)->num == max && !stacks_is_sort((*a), (*b)))
+		if ((*b) && get_struct_len((*b)) + 1 > 2 && (*a) && (*a)->num && (*a)->num == max && !stacks_is_sort((*a), (*b)))
 		{
+
 			(*b) = ft_pb(a, (*b));
 			(*b) = ft_rb((*b));
+//			if ((*a) && (*a)->num && (*a)->next && (*a)->next->num && (*a)->num > (*a)->next->num)
+//				(*a) = ft_sa((*a));
 			break;
 		}
 		step(to, min, a);
@@ -63,7 +70,10 @@ void ft_oper(t_num **a, t_num **b)
 	{
 		(*b) = ft_pb(a, (*b));
 		ft_print((*a),(*b));
-		if ((*b)->next && (*b)->num < (*b)->next->num)
+		if ((*a) && (*a)->num && (*a)->next && (*a)->next->num && (*a)->num > (*a)->next->num)
+			(*a) = ft_sa((*a));
+		ft_print((*a),(*b));
+		if ((*b) && (*b)->next && (*b)->next != (*b) && (*b)->num < (*b)->next->num)
 		{
 			(*b) = ft_sb((*b));
 			ft_print((*a),(*b));

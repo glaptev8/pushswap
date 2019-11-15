@@ -15,7 +15,7 @@ SRC_C_DIR = check/
 
 C_P_FILE =	push_swap.c \
 			sort.c \
-			ft_oper.c
+			ft_oper.c \
 
 C_O_FILE =	clear.c \
 			ft_init_stack.c \
