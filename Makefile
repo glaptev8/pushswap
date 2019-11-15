@@ -23,12 +23,12 @@ C_O_FILE =	clear.c \
 			ft_print.c \
 			getters.c \
 			lst.c \
-			stack_is_sort.c
+			stack_is_sort.c\
+			has_dublicat.c
 
 C_C_FILE =	checker.c \
 			finish_checker.c \
-			ft_operations.c \
-			has_dublicat.c
+			ft_operations.c
 
 C_P_FIND =		$(C_P_FILE:%=$(SRC_P_DIR)%)
 C_O_FIND = 		$(C_O_FILE:%=$(SRC_O_DIR)%)

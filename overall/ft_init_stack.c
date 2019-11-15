@@ -3,10 +3,13 @@
 int				ft_init_stack(t_num **stacks, int ac, char **av)
 {
 	int i;
+	int j;
 
+	j = 0;
 	i = 0;
-	while (++i < ac)
+	while (i < ac)
 	{
+
 		if (ft_is_number(av[i]))
 		{
 			if (ft_atoi(av[i]) > 2147483647 ||
@@ -17,6 +20,7 @@ int				ft_init_stack(t_num **stacks, int ac, char **av)
 		else
 			return (0);
 		*stacks = (*stacks)->next;
+		i++;
 	}
 	return (1);
 }

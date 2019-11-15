@@ -48,6 +48,6 @@ void	step(int to, int min, t_num **a);
 void	ft_print(t_num *a, t_num *b);
 int			ft_printf(const char *format, ...);
 void	clear(t_num **t, int n);
-void	finish_check(t_num **a, t_num **b);
+void	finish_check(t_num **a, t_num **b, char **s);
 int		check_step3(char *com, t_num **a, t_num **b);
 #endif

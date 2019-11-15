@@ -100,9 +100,23 @@ int main(int argc, char **argv)
 	int n[500];
 	int i = 0;
 	int j;
+	char **s;
 	t_num *a;
 
 
+	argv++;
+	if (argc == 2 && ft_strchr(argv[0], ' '))
+	{
+		s = ft_strsplit(argv[0], ' ');
+		argc = 0;
+		i = 0;
+		while (s[i])
+			i++;
+		argc = i;
+	}
+	else
+		argc--;
+	i = 0;
 	while (i < 500)
 	{
 		srand(time(NULL));
@@ -119,31 +133,38 @@ int main(int argc, char **argv)
 		}
 		i++;
 	}
-	i = 0;
-	a = lst_new(argc - 1);
-	if (ft_init_stack(&a, argc, argv) == 0)
-	{
-		clear(&a, argc - 1);
-		ft_putstr_fd("Error\n", 2);
-		return (0);
-	}
-//	if (has_dublicat(argv, argc) == -1)
+	a = lst_new(500);
+//	if (ft_init_stack(&a, argc, s ? s : argv) == 0)
+//	{
+//		clear(&a, argc);
+//		ft_putstr_fd("Error\n", 2);
+//		return (0);
+//	}
+//	if (has_dublicat(s ? s : argv, argc) == -1)
 //	{
 //		clear(&a, argc - 1);
 //		ft_putstr_fd("Error\n", 2);
 //		return (0);
 //	}
-//	while (i < 100)
-//	{
-//		a->num = n[i];
-//		printf("%d  ", a->num);
-//		a = a->next;
-//		i++;
-//	}
+i = 0;
+	while (i < 500)
+	{
+		a->num = n[i];
+		printf("%d  ", a->num);
+		a = a->next;
+		i++;
+	}
 	printf("\n");
 	push_swap(&a);
 	ft_display_a(a);
-	clear(&a, argc - 1);
+	clear(&a, 5);
 	printf("\n%d", count);
+	i = 0;
+	if (s)
+	{
+		while (s[i])
+			free(s[i++]);
+		free(s);
+	}
 	return (1);
 }
