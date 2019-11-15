@@ -2,11 +2,12 @@
 
 t_num		*ft_sa(t_num *a)
 {
+	int num;
+
 	if (a && a->next && a != a->next)
 	{
 		printf("sa\n");
 		count++;
-		int num;
 		num = a->num;
 		a->num = a->next->num;
 		a->next->num = num;
@@ -76,8 +77,8 @@ t_num		*ft_rrb(t_num *b)
 t_num		*ft_pb(t_num **a, t_num *b)
 {
 	printf("pb\n");
-    count++;
-    b = lst_add(b, (*a)->num);
+	count++;
+	b = lst_add(b, (*a)->num);
 	if ((*a) && (*a)->next && (*a) != (*a)->next)
 		lst_remove(a);
 	return (b);

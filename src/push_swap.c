@@ -29,11 +29,12 @@ void	ft_pushb_a(t_num **b, t_num **a)
 {
 	int		q;
 
+	ft_print((*a), (*b));
 	q = get_struct_len((*b));
 	while (--q >= 0)
 	{
-		ft_print((*a), (*b));
 		(*a) = ft_pa((*a), b);
+		ft_print((*a), (*b));
 		if (q >= 0)
 		{
 			if ((*b) && (*b)->prev && (*b)->num > (*b)->prev->num && ((*b)->num > (*a)->prev->num)) {
@@ -83,11 +84,14 @@ void	push_swap(t_num **a)
 {
 	t_num *b;
 
+	if ((*a) && (*a)->num && (*a)->next && (*a)->next->num && (*a)->num > (*a)->next->num)
+			(*a) = ft_sa((*a));
 	if (!sort_one(a, b))
 		return ;
-	while ((*a)->next != (*a) && !stacks_is_sort((*a), b))
+	while ((*a) && (*a)->next && (*a)->next != (*a) && !stacks_is_sort((*a), b))
 		ft_oper(a, &b);
-	ft_pushb_a(&b, a);
+	if (!stacks_is_sort((*a), b) || b)
+		ft_pushb_a(&b, a);
 }
 
 int main(int argc, char **argv)
@@ -97,6 +101,7 @@ int main(int argc, char **argv)
 	int i = 0;
 	int j;
 	t_num *a;
+
 
 	while (i < 500)
 	{
@@ -115,23 +120,30 @@ int main(int argc, char **argv)
 		i++;
 	}
 	i = 0;
-	a = lst_new(3);
+	a = lst_new(argc - 1);
 	if (ft_init_stack(&a, argc, argv) == 0)
 	{
-		clear(&a, 3);
+		clear(&a, argc - 1);
 		ft_putstr_fd("Error\n", 2);
 		return (0);
 	}
-//	while (i++ < 7)
+//	if (has_dublicat(argv, argc) == -1)
+//	{
+//		clear(&a, argc - 1);
+//		ft_putstr_fd("Error\n", 2);
+//		return (0);
+//	}
+//	while (i < 100)
 //	{
 //		a->num = n[i];
 //		printf("%d  ", a->num);
 //		a = a->next;
+//		i++;
 //	}
 	printf("\n");
 	push_swap(&a);
-	ft_print(a, a);
-	clear(&a, 3);
+	ft_display_a(a);
+	clear(&a, argc - 1);
 	printf("\n%d", count);
 	return (1);
 }

@@ -6,9 +6,10 @@ int		get_struct_len(t_num *a)
 	int i;
 
 	i = 0;
-	if (a != a->next)
+	q = a;
+	if (a && a->next && a != a->next)
 		q = a->next;
-	while (q != a)
+	while (q && q->next && q != a)
 	{
 		i++;
 		q = q->next;
