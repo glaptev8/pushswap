@@ -2,15 +2,19 @@
 
 int	init_check(int *argc, char **argv, t_num **a, int *flag)
 {
-	if (*argc == 1 || (*argc == 2 && !ft_strcmp(argv[1], "-v")))
+	if (argv && *argv && argv[0][0] == '\0')
 		return (0);
-	if (!ft_strcmp(argv[1], "-v"))
+	if (*argc == 0 || (*argc == 1 && !ft_strcmp(argv[0], "-v")))
+		return (0);
+	if (!ft_strcmp(argv[0], "-v"))
 	{
 		*flag = 1;
 		(*argc)--;
 		argv++;
 	}
-	*a = lst_new((*argc) - 1);
+	if (argv && *argv && argv[0][0] == '\0')
+		return (0);
+	*a = lst_new(*argc);
 	if (ft_init_stack(a, *argc, argv) == 0)
 	{
 		ft_putstr_fd("Error\n", 2);
@@ -92,17 +96,30 @@ int	main(int argc, char **argv)
 	t_num *a;
 	t_num *b;
 	char *com;
-	int flag = 0;
+	int flag;
+	char **s;
+	flag = 0;
 
-	if (init_check(&argc, argv, &a, &flag) == 0)
+	argv++;
+	if (argc == 2 && ft_strchr(argv[0], ' '))
 	{
-		finish_check(&a, &b);
+		s = ft_strsplit(argv[0], ' ');
+		while (s[flag])
+			flag++;
+		argc = flag;
+		flag = 0;
+	}
+	else
+		argc--;
+	if (has_dublicat(s ? s : argv, argc) == -1)
+	{
+		finish_check(&a, &b, s);
+		ft_putstr_fd("Error\n", 2);
 		return (0);
 	}
-	if (has_dublicat(argv, argc) == -1)
+	if (init_check(&argc, s ? s : argv, &a, &flag) == 0)
 	{
-		finish_check(&a, &b);
-		ft_putstr_fd("Error\n", 2);
+		finish_check(&a, &b, s);
 		return (0);
 	}
 	ft_print(a, b);
@@ -112,7 +129,7 @@ int	main(int argc, char **argv)
 			if (check_step2(com , &a, &b) == 0)
 				if (check_step3(com, &a, &b) == -1)
 				{
-					finish_check(&a, &b);
+					finish_check(&a, &b, s);
 					return (0);
 				}
 		if (flag == 1)
@@ -123,6 +140,6 @@ int	main(int argc, char **argv)
 		ft_printf("KO\n");
 	else
 		ft_printf("OK\n");
-	finish_check(&a, &b);
+	finish_check(&a, &b, s);
 	return (0);
 }
