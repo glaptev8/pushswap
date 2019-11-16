@@ -56,7 +56,7 @@ void	ft_sort(t_num **a, t_num **b)
 	{
 		if (!sort_one(a, (*b)))
 			break ;
-		if ((*b) && (*a)->num == z && !stacks_is_sort((*a), (*b)))
+		if ((*a)->num == z && !stacks_is_sort((*a), (*b)))
 		{
 			(*b) = ft_pb(a, (*b));
 			break ;

@@ -28,7 +28,7 @@ static int		new_str(char **str, int fd, char **line)
 	return (1);
 }
 
-int		get_next_line(const int fd, char **line)
+int				get_next_line(const int fd, char **line)
 {
 	static char	*str[10];
 	char		*tmp;

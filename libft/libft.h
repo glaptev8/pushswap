@@ -18,7 +18,7 @@
 # include <unistd.h>
 # define FT_ULONG_MAX	((unsigned long)(~0L))
 # define FT_LONG_MAX	((long)(FT_ULONG_MAX >> 1))
-#define BUFF_SIZE 4096
+# define BUFF_SIZE 4096
 
 typedef struct		s_list
 {

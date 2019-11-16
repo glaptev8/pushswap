@@ -3,3 +3,4 @@
 ./libft/*.o
 obj
 obj_c
+./random.sh

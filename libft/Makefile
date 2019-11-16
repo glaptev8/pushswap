@@ -39,8 +39,8 @@ OBJ = NAME_O
 all: $(NAME)
 
 $(NAME): $(NAME_O)
-	ar rc $(NAME) $(NAME_O)
-	ranlib $(NAME)
+	@ar rc $(NAME) $(NAME_O)
+	@echo ranlib $(NAME)
 
 $(NAME_O): $(NAME_C)
 		@gcc -Wall -Wextra -Werror -I libft.h -c $(@:%.o=%.c)

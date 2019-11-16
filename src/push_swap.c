@@ -60,8 +60,7 @@ void	ft_pushb_a(t_num **b, t_num **a)
 	ft_printf("pa\n");
 	if ((*a)->num > (*a)->prev->num)
 		(*a) = ft_ra((*a));
-	if ((*a)->num > (*a)->next->num)
-		(*a) = ft_sa((*a));
+	(*a)->num > (*a)->next->num ? (*a) = ft_sa((*a)) : 0;
 	free(*b);
 	b = NULL;
 	free(b);
@@ -100,18 +99,19 @@ void	push_swap(t_num **a)
 
 int		main(int argc, char **argv)
 {
-	int		i;
 	char	**s;
 	t_num	*a;
+
 	s = NULL;
-	if (argc == 2)
+	argc--;
+	if (argc == 1)
 	{
 		s = ft_strsplit(argv[1], ' ');
-		i = 0;
-		while (s[i])
-			i++;
-		argc = i;
+		argc = 0;
+		while (s[argc])
+			argc++;
 	}
+	argv++;
 	a = lst_new(argc);
 	if (stack_push(&a, argc, s ? s : argv) == 0)
 	{
@@ -119,7 +119,6 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	push_swap(&a);
-//	ft_display_a(a);
 	clear(&a, argc);
 	fresh(s);
 	return (1);
