@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_stack.c                                    :+:      :+:    :+:   */
+/*   finish_checker.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmelia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/15 17:36:33 by tmelia            #+#    #+#             */
-/*   Updated: 2019/11/15 17:36:34 by tmelia           ###   ########.fr       */
+/*   Created: 2019/11/15 17:49:44 by tmelia            #+#    #+#             */
+/*   Updated: 2019/11/15 17:49:45 by tmelia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int				ft_init_stack(t_num **stacks, int ac, char **av)
+void	finish_check(t_num **a, t_num **b, char **s)
 {
 	int i;
-	int j;
 
-	j = 0;
 	i = 0;
-	while (i < ac)
+	if (!(*a) || (((*a) && !(*a)->next) ||
+	((*a) && (*a)->next && (*a)->next == (*a))))
+		free((*a));
+	else
+		clear(a, get_struct_len((*a)) + 1);
+	if (!(*b) || (((*b) && !(*b)->next) ||
+	((*b) && (*b)->next && (*b)->next == (*b))))
+		free((*b));
+	else
+		clear(b, get_struct_len((*b)) + 1);
+	if (s)
 	{
-		if (ft_is_number(av[i]))
-		{
-			if (ft_atoi(av[i]) > 2147483647 ||
-					ft_atoi(av[i]) < -2147483648)
-				return (0);
-			(*stacks)->num = ft_atoi(av[i]);
-		}
-		else
-			return (0);
-		*stacks = (*stacks)->next;
-		i++;
+		while (s[i])
+			free(s[i++]);
+		free(s);
 	}
-	return (1);
 }

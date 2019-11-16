@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_stack.c                                    :+:      :+:    :+:   */
+/*   check_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmelia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/15 17:36:33 by tmelia            #+#    #+#             */
-/*   Updated: 2019/11/15 17:36:34 by tmelia           ###   ########.fr       */
+/*   Created: 2019/11/15 19:10:45 by tmelia            #+#    #+#             */
+/*   Updated: 2019/11/15 19:10:46 by tmelia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int				ft_init_stack(t_num **stacks, int ac, char **av)
+char		**check_str(int *argc, char ***argv)
 {
-	int i;
-	int j;
+	int		i;
+	char	**s;
 
-	j = 0;
 	i = 0;
-	while (i < ac)
+	if ((*argc == 2 && ft_strchr((*argv[0]), ' ')) ||
+	(*argc == 3 && ft_strchr((*argv)[1], ' ')))
 	{
-		if (ft_is_number(av[i]))
+		if (*argc == 3)
 		{
-			if (ft_atoi(av[i]) > 2147483647 ||
-					ft_atoi(av[i]) < -2147483648)
-				return (0);
-			(*stacks)->num = ft_atoi(av[i]);
+			s = ft_strsplit((*argv)[1], ' ');
 		}
 		else
-			return (0);
-		*stacks = (*stacks)->next;
-		i++;
+			s = ft_strsplit((*argv)[0], ' ');
+		while (s[i])
+			i++;
+		*argc = i;
+		return (s);
 	}
-	return (1);
+	else
+		(*argc)--;
+	return (NULL);
 }

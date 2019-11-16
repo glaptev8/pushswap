@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_stack.c                                    :+:      :+:    :+:   */
+/*   fresh.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmelia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/15 17:36:33 by tmelia            #+#    #+#             */
-/*   Updated: 2019/11/15 17:36:34 by tmelia           ###   ########.fr       */
+/*   Created: 2019/11/15 17:17:47 by tmelia            #+#    #+#             */
+/*   Updated: 2019/11/15 17:32:26 by tmelia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int				ft_init_stack(t_num **stacks, int ac, char **av)
+void	fresh(char **s)
 {
 	int i;
-	int j;
 
-	j = 0;
 	i = 0;
-	while (i < ac)
+	if (s)
 	{
-		if (ft_is_number(av[i]))
-		{
-			if (ft_atoi(av[i]) > 2147483647 ||
-					ft_atoi(av[i]) < -2147483648)
-				return (0);
-			(*stacks)->num = ft_atoi(av[i]);
-		}
-		else
-			return (0);
-		*stacks = (*stacks)->next;
-		i++;
+		while (s[i])
+			free(s[i++]);
+		free(s);
 	}
-	return (1);
 }

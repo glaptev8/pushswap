@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tmelia <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/15 17:17:26 by tmelia            #+#    #+#             */
+/*   Updated: 2019/11/15 17:17:29 by tmelia           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/push_swap.h"
 #include <stdlib.h>
 
@@ -25,29 +37,33 @@ int		ft_direction(int x, int d, int m, int y)
 	return (to);
 }
 
-void	*ft_pushb_a(t_num *b, t_num **a)
+void	ft_pushb_a(t_num **b, t_num **a)
 {
-	while (b != NULL)
+	int		q;
+
+	q = get_struct_len((*b));
+	while (--q >= 0)
 	{
-		(*a) = ft_pa((*a), &b);
-		ft_print((*a), b);
-		if (b && b->prev && b->num > b->prev->num)
+		(*a) = ft_pa((*a), b);
+		if (q >= -1)
 		{
-			b = ft_rrb(b);
-			ft_print((*a), b);
+			if ((*b) && (*b)->prev &&
+			(*b)->num > (*b)->prev->num && ((*b)->num > (*a)->prev->num))
+				(*b) = ft_rrb((*b));
 		}
 		if ((*a)->num > (*a)->prev->num)
-		{
-			(*a)= ft_ra((*a));
-			ft_print((*a), b);
-		}
+			(*a) = ft_ra((*a));
 		if ((*a)->num > (*a)->next->num)
-		{
-			(*a)= ft_sa((*a));
-			ft_print((*a), b);
-		}
+			(*a) = ft_sa((*a));
 	}
-	return ((*a));
+	(*a) = lst_add((*a), (*b)->num);
+	ft_printf("pa\n");
+	if ((*a)->num > (*a)->prev->num)
+		(*a) = ft_ra((*a));
+	(*a)->num > (*a)->next->num ? (*a) = ft_sa((*a)) : 0;
+	free(*b);
+	b = NULL;
+	free(b);
 }
 
 void	ft_display_a(t_num *a)
@@ -55,7 +71,6 @@ void	ft_display_a(t_num *a)
 	int d;
 
 	d = a->num;
-
 	ft_printf("%d ", a->num);
 	a = a->next ? a->next : a;
 	while (a->next && a->num != d)
@@ -63,77 +78,48 @@ void	ft_display_a(t_num *a)
 		ft_printf("%d ", a->num);
 		a = a->next;
 	}
-	ft_printf ("\n");
+	ft_printf("\n");
 }
 
-t_num	*push_swap(t_num *a, t_num **b)
+void	push_swap(t_num **a)
 {
-	int i = 9;
-	while (a->next != NULL && !stacks_is_sort(a, (*b)) && --i > 0)
-	{
-		if (!sort_one(&a, (*b)))
-			break ;
-		a = ft_oper(a, b);
-	}
-    ft_pushb_a((*b), &a);
-	return (a);
-}
-
-int main(int argc, char **argv)
-{
-	count = 0;
-	int n[500];
-	int i = 0;
-	int j;
-    t_num *q;
-
-	while (i < 500)
-	{
-		srand(time(NULL));
-		j = 0;
-		n[i] = -100 + rand() % 1200;
-		while (j < i)
-		{
-			if (n[j] == n[i])
-			{
-				n[i] = -100 + rand() % 1200;
-				j = -1;
-			}
-			j++;
-		}
-		i++;
-	}
-	i = 0;
-	t_num *a;
 	t_num *b;
 
-	a = lst_new(10);
-	q = a;
-	if (ft_init_stack(&a, argc, argv) == 0)
-		ft_putstr_fd("Error\n", 2);
-//	while (i < 10)
-//	{
-//		a->num = n[i];
-//		printf("%d  ", a->num);
-//		a = a->next;
-//		i++;
-//	}
-    i = 9;
-	printf("\n");
-//	b = lst_new(0);
-//	b = NULL;
-	a = push_swap(a, &b);
-	ft_display_a(a);
-    while (i-- > 0 && q->next)
-    {
-        free(q->prev);
-        q = q->next;
-    }
-//    free(a->next);
-//    free(a->prev);
-    free(q);
-    free(q->next);
-    free(q->prev);
-	printf("(%d)", count);
-	return 1;
+	b = NULL;
+	if ((*a) && (*a)->num && (*a)->next &&
+	(*a)->next->num && (*a)->num > (*a)->next->num)
+		*a = ft_sa(*a);
+	if (!sort_one(a, b))
+		return ;
+	while ((*a) && (*a)->next && (*a)->next != (*a) && !stacks_is_sort((*a), b))
+		ft_oper(a, &b);
+	if (!stacks_is_sort((*a), b) || b)
+		ft_pushb_a(&b, a);
+}
+
+int		main(int argc, char **argv)
+{
+	char	**s;
+	t_num	*a;
+
+	s = NULL;
+	argc--;
+	if (argc == 1)
+	{
+		s = ft_strsplit(argv[1], ' ');
+		argc = 0;
+		while (s[argc])
+			argc++;
+	}
+	argv++;
+	a = lst_new(argc);
+	if (stack_push(&a, argc, s ? s : argv) == 0)
+	{
+		fresh(s);
+		return (0);
+	}
+	push_swap(&a);
+	clear(&a, argc);
+	fresh(s);
+	return (1);
 }

@@ -1,0 +1,8 @@
+./obj/*
+./obj_c/*
+./libft/*.o
+obj
+obj_c
+random.sh
+.idea
+.idea/*
