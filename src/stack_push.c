@@ -23,7 +23,6 @@ int		stack_push(t_num **a, int argc, char **s)
 	if (has_dublicat(s, argc) == -1)
 	{
 		clear(a, argc);
-		ft_putstr_fd("Error\n", 2);
 		return (0);
 	}
 	return (1);

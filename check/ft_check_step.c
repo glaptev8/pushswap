@@ -22,16 +22,13 @@ int		is_a_sort(t_num *a)
 	while (a && a->next && a->next != b)
 	{
 		if (a->num > a->next->num)
-		{
-			printf("%d   %d", a->num, a->next->num);
 			return (0);
-		}
 		a = a->next;
 	}
 	return (1);
 }
 
-int	ft_check_step(char *com, t_num **a, t_num **b, int flag)
+int		ft_check_step(char *com, t_num **a, t_num **b, int flag)
 {
 	flag == 1 ? ft_print(*a, *b) : 0;
 	while (get_next_line(0, &com) != 0)

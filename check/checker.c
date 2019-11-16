@@ -128,11 +128,7 @@ int		main(int argc, char **argv)
 		finish_check(&a, &b, s);
 		return (0);
 	}
-	if (ft_check_step(com, &a, &b, flag) == 0)
-	{
-		finish_check(&a, &b, s);
-		return (0);
-	}
+	ft_check_step(com, &a, &b, flag);
 	finish_check(&a, &b, s);
 	return (0);
 }

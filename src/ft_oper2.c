@@ -33,7 +33,6 @@ t_num		*ft_pb(t_num **a, t_num *b)
 
 t_num		*ft_pa(t_num *a, t_num **b)
 {
-
 	ft_printf("pa\n");
 	a = lst_add(a, (*b)->num);
 	if ((*b) && (*b)->next != *b)
