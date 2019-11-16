@@ -18,13 +18,10 @@ char		**check_str(int *argc, char ***argv)
 	char	**s;
 
 	i = 0;
-	if ((*argc == 2 && ft_strchr((*argv[0]), ' ')) ||
-	(*argc == 3 && ft_strchr((*argv)[1], ' ')))
+	if ((*argc == 2) || (*argc == 3))
 	{
 		if (*argc == 3)
-		{
 			s = ft_strsplit((*argv)[1], ' ');
-		}
 		else
 			s = ft_strsplit((*argv)[0], ' ');
 		while (s[i])
