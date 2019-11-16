@@ -2,8 +2,8 @@
 NAME_PUSH_SWAP = push
 NAME_CHECKER = check
 LIBFT_A = libft/libft.a
-LIBFTPRINTF_A = libftprintf.a
-COMP =		gcc -c -o
+LIBFTPRINTF_A = ft_printf/libftprintf.a
+COMP =		gcc -Wall -Wextra -Werror -c -o
 PUSH_SWAP_H = -I includes/
 
 OBJ_DIR =	obj/
@@ -53,6 +53,7 @@ all: $(NAME_PUSH_SWAP) $(NAME_CHECKER)
 
 $(NAME_PUSH_SWAP): $(OBJ_DIR) $(OBJ_P) $(OBJ_O)
 	@make -C libft/
+	@make -C ft_printf/
 	gcc $(LIBFT_A) $(LIBFTPRINTF_A) $(OBJ_O) $(OBJ_P) -o push_swap
 
 $(NAME_CHECKER): $(OBJ_DIR_C) $(OBJ_C)
@@ -87,11 +88,11 @@ $(O_C_FILE):
 
 clean:
 		rm -rf obj obj_c
-		@make -C libft/ clean
+		@make -C ft_printf/ clean
 
 fclean: clean
 		rm -rf ./checker ./push_swap
-		@make -C libft/ fclean
+		@make -C ft_printf/ fclean
 
 re: fclean all
 
