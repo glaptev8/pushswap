@@ -17,23 +17,10 @@ int		ft_direction(int x, int d, int m, int y)
 {
 	int to;
 
-	if (x > d && x > m)
-		m < d ? d = m : 0;
-	else if (d > x && d > m)
-		m < x ? x = m : 0;
-	else if (m > d && m > x)
-	{
-		if (d < x)
-			x = m;
-		else
-			d = m;
-	}
-	if (x > d)
-		to = y - x < d ? 2 : 1;
-	else if (y - d <= x - 1 || d == y)
-		to = 2;
+	if (m > d)
+		to = y - m < d ? 2 : 1;
 	else
-		to = 1;
+		to = y - d < m ? 2 : 1;
 	return (to);
 }
 
@@ -86,15 +73,12 @@ void	push_swap(t_num **a)
 	t_num *b;
 
 	b = NULL;
-	if ((*a) && (*a)->num && (*a)->next &&
-	(*a)->next->num && (*a)->num > (*a)->next->num)
-		*a = ft_sa(*a);
-	if (!sort_one(a, b))
-		return ;
-	while ((*a) && (*a)->next && (*a)->next != (*a) && !stacks_is_sort((*a), b))
+//	if (!sort_one(a, b))
+//		return ;
+//	while (!stack_a_sort(*a))
 		ft_oper(a, &b);
-	if (!stacks_is_sort((*a), b) || b)
-		ft_pushb_a(&b, a);
+//	if (!stacks_is_sort((*a), b) || b)
+//		ft_pushb_a(&b, a);
 }
 
 int		main(int argc, char **argv)
@@ -119,7 +103,7 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	push_swap(&a);
-	clear(&a, argc);
+//	clear(&a, argc);
 	fresh(s);
 	return (1);
 }

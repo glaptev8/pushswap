@@ -35,8 +35,14 @@ t_num		*ft_pa(t_num *a, t_num **b)
 {
 	ft_printf("pa\n");
 	a = lst_add(a, (*b)->num);
-	if ((*b) && (*b)->next != *b)
+	if ((*b) && (*b)->next && (*b)->next != *b)
 		lst_remove(b);
+	else
+	{
+		free(*b);
+		*b = NULL;
+//		free(b);
+	}
 	return (a);
 }
 
