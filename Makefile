@@ -3,7 +3,7 @@ NAME_PUSH_SWAP = push
 NAME_CHECKER = check
 LIBFT_A = libft/libft.a
 LIBFTPRINTF_A = ft_printf/libftprintf.a
-COMP =		gcc -Wall -Wextra -Werror -c -o
+COMP =		gcc -c -o
 PUSH_SWAP_H = -I includes/
 
 OBJ_DIR =	obj/
@@ -18,7 +18,8 @@ C_P_FILE =	push_swap.c \
 			ft_oper.c \
 			stack_push.c \
 			fresh.c \
-			ft_oper2.c
+			ft_oper2.c \
+			average.c
 
 C_O_FILE =	clear.c \
 			ft_init_stack.c \
@@ -27,7 +28,8 @@ C_O_FILE =	clear.c \
 			getters.c \
 			lst.c \
 			stack_is_sort.c\
-			has_dublicat.c
+			has_dublicat.c \
+			stack_a_sort.c
 
 C_C_FILE =	checker.c \
 			finish_checker.c \
@@ -35,7 +37,7 @@ C_C_FILE =	checker.c \
 			check_str.c \
 			ft_check_step.c \
 			valid_check.c \
-			ft_operations2.c
+			ft_operations2.c \
 
 C_P_FIND =		$(C_P_FILE:%=$(SRC_P_DIR)%)
 C_O_FIND = 		$(C_O_FILE:%=$(SRC_O_DIR)%)

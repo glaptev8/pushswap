@@ -69,4 +69,7 @@ int					init_check(int *argc, char **argv, t_num **a, int *flag);
 int					check_step2(char *com, t_num **a, t_num **b);
 int					stack_push(t_num **a, int argc, char **s);
 void				fresh(char **s);
+int					is_a_sort(t_num *a);
+int					average(t_num *a, int len);
+int		more_average(t_num *a, int n, int min);
 #endif
