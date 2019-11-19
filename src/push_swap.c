@@ -18,9 +18,9 @@ int		ft_direction(int x, int d, int m, int y)
 	int to;
 
 	if (m > d)
-		to = y - m < d ? 2 : 1;
+		to = y - m <= d ? 2 : 1;
 	else
-		to = y - d < m ? 2 : 1;
+		to = y - d <= m ? 2 : 1;
 	return (to);
 }
 

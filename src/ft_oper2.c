@@ -28,6 +28,12 @@ t_num		*ft_pb(t_num **a, t_num *b)
 	b = lst_add(b, (*a)->num);
 	if ((*a) && (*a)->next && (*a) != (*a)->next)
 		lst_remove(a);
+	else
+	{
+		free(*a);
+		*a = NULL;
+//		free(b);
+	}
 	return (b);
 }
 
