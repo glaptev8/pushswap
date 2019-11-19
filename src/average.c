@@ -25,19 +25,46 @@ int		ft_average(t_num *a, int len, int min)
 	return (average / count);
 }
 
+int		ft_average2(t_num *a, int len, int min)
+{
+	int average;
+	int i;
+	int count;
+
+	count = 0;
+	i = 0;
+	average = 0;
+	while (i < len)
+	{
+		if (a->num && a->num < min)
+		{
+			average += a->num;
+			count++;
+		}
+		i++;
+		if (a->next)
+			a = a->next;
+		else
+			return (0);
+	}
+	if (count == 0)
+		return (0);
+	return (average / count);
+}
+
 int		more_average(t_num *a, int n, int min)
 {
 	t_num *b;
 
 	if (!a)
 		return (0);
-	if (a->num < n && a->num > min)
+	if (a->num <= n && a->num > min)
 		return (1);
 	b = a;
 	a = a->next;
 	while (a != b)
 	{
-		if (a->num < n && a->num > min)
+		if (a->num <= n && a->num > min)
 			return (1);
 		a = a->next;
 	}

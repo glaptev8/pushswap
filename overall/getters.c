@@ -34,9 +34,14 @@ int		get_struct_len(t_num *a)
 int		get_pos(t_num *a, int n)
 {
 	int i;
+	t_num *q;
 
+	if (a->num == n)
+		return (1);
+	q = a;
+	a = a->next;
 	i = 0;
-	while (a->num != n)
+	while (a->num != n && q != a)
 	{
 		i++;
 		if (a != a->next)
@@ -102,4 +107,22 @@ int		get_min(t_num *a)
 		q = q->next;
 	}
 	return (min);
+}
+
+
+int		get_second_max(t_num *a, int max)
+{
+	int		m;
+	t_num	*q;
+
+	m = a->num;
+	q = a->next;
+	while (q != a)
+	{
+		if (q->num > m && q->num != max)
+			m = q->num;
+		q = q->next;
+	}
+	q = NULL;
+	return (m);
 }
