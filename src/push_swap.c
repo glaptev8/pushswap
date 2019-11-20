@@ -103,7 +103,7 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	push_swap(&a);
-//	clear(&a, argc);
+	clear(&a, argc);
 	fresh(s);
 	return (1);
 }
