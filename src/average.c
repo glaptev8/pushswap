@@ -109,3 +109,35 @@ int biger_min(t_num *a, int min)
 	}
 	return (count);
 }
+
+while_more_average(t_num **a, t_num **b, int average, int average2)
+{
+	int min;
+	int max;
+	int next;
+	int prev;
+	int to;
+
+	max = get_max(*a);
+	if (*b)
+		min = get_min(*b);
+	else
+		min = get_min(*a) - 1;
+	while (more_average(*a, average2, min))
+	{
+		next = get_next(*a, average2);
+		prev = get_prev(*a, average2);
+		to = ft_direction(1, get_pos(*a, next), get_pos(*a, prev), get_struct_len(*a));
+		if ((*a)->num <= average && (*a)->num > min && (*a)->num != max)
+		{
+			*b = ft_pb(a, *b);
+			if ((*b)->next && (*b) != (*b)->next && (*b)->num <= average2)
+				*b = ft_rb(*b);
+			to = ft_direction(1, get_pos(*a, next), get_pos(*a, prev), get_struct_len(*a));
+		}
+		else if (to == 2)
+			*a = ft_rra(*a);
+		else
+			*a = ft_ra(*a);
+	}
+}
