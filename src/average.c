@@ -27,6 +27,33 @@ int		ft_average(t_num *a, int len, int min)
 	return (average / count);
 }
 
+int		ft_2average(t_num *a, int len, int min, int max)
+{
+	int average;
+	int i;
+	int count;
+
+	count = 0;
+	i = 0;
+	average = 0;
+	while (i < len)
+	{
+		if (a->num && a->num > min && a->num <= max)
+		{
+			average += a->num;
+			count++;
+		}
+		i++;
+		if (a->next)
+			a = a->next;
+		else
+			return (0);
+	}
+	if (count == 0)
+		return (0);
+	return (average / count);
+}
+
 int		ft_average2(t_num *a, int len, int min)
 {
 	int average;
@@ -39,6 +66,33 @@ int		ft_average2(t_num *a, int len, int min)
 	while (i < len)
 	{
 		if (a->num && a->num < min)
+		{
+			average += a->num;
+			count++;
+		}
+		i++;
+		if (a->next)
+			a = a->next;
+		else
+			return (0);
+	}
+	if (count == 0)
+		return (0);
+	return (average / count);
+}
+
+int		ft_2average2(t_num *a, int len, int min, int max)
+{
+	int average;
+	int i;
+	int count;
+
+	count = 0;
+	i = 0;
+	average = 0;
+	while (i < len)
+	{
+		if (a->num && a->num >= min && a->num <= max)
 		{
 			average += a->num;
 			count++;
@@ -187,7 +241,7 @@ void	while_more_average2(t_num **a, t_num **b, int average, int average2)
 		if ((*b)->num >= average)
 		{
 			*a = ft_pa(*a, b);
-			if ((*a)->next && (*a) != (*a)->next && (*a)->num < average)
+			if ((*a)->next && (*a) != (*a)->next && (*a)->num > average2)
 				*a = ft_ra(*a);
 			to = ft_direction(1, get_pos(*b, next), get_pos(*b, prev), get_struct_len(*b));
 		}
@@ -204,4 +258,8 @@ void	ft_init_average(t_num **a, int len, int min, int *average)
 	average[1] = ft_average2((*a), len, average[0]);
 	average[2] = ft_average2((*a), len, average[1]);
 	average[3] = ft_average2((*a), len, average[2]);
+	average[4] = ft_2average((*a), len, average[0], get_max(*a));
+	average[5] = ft_2average2((*a), len, average[1], average[4]);
+	average[6] = ft_2average2((*a), len, average[2], average[5]);
+	average[7] = ft_2average2((*a), len, average[3], average[6]);
 }

@@ -127,7 +127,7 @@ void	ft_sort(t_num **a, t_num **b)
 	int max;
 	int z;
 	int min;
-	int average[4];
+	int average[8];
 	int len;
 	len = get_struct_len(*a) + 1;
 	min = get_min(*a) - 1;
@@ -165,21 +165,21 @@ void	ft_sort(t_num **a, t_num **b)
 	}
 	min = get_min(*b);
 	ft_init_average(b, get_struct_len(*b) + 1, get_min(*b) - 1, average);
+//	printf("%d      %d   %d    %d    %d    %d %d", average[0], average[1], average[2], average[3], average[4],average[5], average[6]);
 	while ((*b))
 	{
-		if (more_average2(*b, average[0], min))
+		if (more_average2(*b, average[0], average[4]))
 		{
-//			printf("%d      %d", average[0], average[1]);
-			while_more_average2 (a, b, average[0], average[1]);
+			while_more_average2 (a, b, average[0], average[4]);
 		}
-		else if	(more_average2(*b, average[1], min))
+		else if	(more_average2(*b, average[1], average[5]))
 		{
-			while_more_average2 (a, b, average[1], average[2]);
+			while_more_average2 (a, b, average[1], average[5]);
 		}
-		else if (more_average2(*b, average[2],min))
+		else if (more_average2(*b, average[2],average[6]))
 		{
 			min = get_min(*b);
-			while_more_average2 (a, b, average[2], average[3]);
+			while_more_average2 (a, b, average[2], average[6]);
 		}
 		else
 			*a = ft_pa(*a, b);
