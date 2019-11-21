@@ -18,9 +18,9 @@ int		ft_direction(int x, int d, int m, int y)
 	int to;
 
 	if (m > d)
-		to = y - m < d ? 2 : 1;
+		to = y - m <= d ? 2 : 1;
 	else
-		to = y - d < m ? 2 : 1;
+		to = y - d <= m ? 2 : 1;
 	return (to);
 }
 
@@ -80,7 +80,7 @@ void	push_swap(t_num **a)
 	if (!is_a_sort(*a))
 		ft_oper(a, &b);
 //	if (!stacks_is_sort((*a), b) || b)
-//		ft_pushb_a(&b, a);
+		ft_pushb_a(&b, a);
 }
 
 int		main(int argc, char **argv)
@@ -105,7 +105,7 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	push_swap(&a);
-	clear(&a, argc);
+//	clear(&a, argc);
 	fresh(s);
 	return (0);
 }
