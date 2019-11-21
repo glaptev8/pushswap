@@ -27,33 +27,6 @@ int		ft_average(t_num *a, int len, int min)
 	return (average / count);
 }
 
-int		ft_2average(t_num *a, int len, int min, int max)
-{
-	int average;
-	int i;
-	int count;
-
-	count = 0;
-	i = 0;
-	average = 0;
-	while (i < len)
-	{
-		if (a->num && a->num > min && a->num <= max)
-		{
-			average += a->num;
-			count++;
-		}
-		i++;
-		if (a->next)
-			a = a->next;
-		else
-			return (0);
-	}
-	if (count == 0)
-		return (0);
-	return (average / count);
-}
-
 int		ft_average2(t_num *a, int len, int min)
 {
 	int average;
@@ -81,46 +54,19 @@ int		ft_average2(t_num *a, int len, int min)
 	return (average / count);
 }
 
-int		ft_2average2(t_num *a, int len, int min, int max)
-{
-	int average;
-	int i;
-	int count;
-
-	count = 0;
-	i = 0;
-	average = 0;
-	while (i < len)
-	{
-		if (a->num && a->num >= min && a->num <= max)
-		{
-			average += a->num;
-			count++;
-		}
-		i++;
-		if (a->next)
-			a = a->next;
-		else
-			return (0);
-	}
-	if (count == 0)
-		return (0);
-	return (average / count);
-}
-
 int		more_average(t_num *a, int n, int min)
 {
 	t_num *b;
 
 	if (!a)
 		return (0);
-	if (a->num <= n && a->num >= min)
+	if (a->num <= n && a->num > min)
 		return (1);
 	b = a;
 	a = a->next;
 	while (a != b)
 	{
-		if (a->num <= n && a->num >= min)
+		if (a->num <= n && a->num > min)
 			return (1);
 		a = a->next;
 	}
@@ -133,19 +79,18 @@ int		more_average2(t_num *a, int n, int min)
 
 	if (!a)
 		return (0);
-	if (a->num > n)
+	if (a->num >= n && a->num > min)
 		return (1);
 	b = a;
 	a = a->next;
 	while (a != b)
 	{
-		if (a->num > n)
+		if (a->num >= n && a->num > min)
 			return (1);
 		a = a->next;
 	}
 	return (0);
 }
-
 
 int has_nubmer(t_num *a, int n)
 {
@@ -193,31 +138,31 @@ void	while_more_average(t_num **a, t_num **b, int average, int average2)
 	int next;
 	int prev;
 	int to;
-	static count = 0;
+
 	max = get_max(*a);
-	if (*b && (*b)->num)
+	if (*b)
 		min = get_min(*b);
 	else
 		min = get_min(*a) - 1;
-	next = get_next(*a, average);
-	prev = get_prev(*a, average);
-	to = ft_direction(1, next, prev, get_struct_len(*a) + 1);
-	while (more_average(*a, average, min))
+	while (more_average(*a, average2, min))
 	{
-		if ((*a)->num <= average && (*a)->num >= min && (*a)->num != max)
+
+		next = get_next(*a, average2);
+		prev = get_prev(*a, average2);
+		to = ft_direction(1, next, prev, get_struct_len(*a));
+		if ((*a)->num <= average && (*a)->num > min && (*a)->num != max)
 		{
 			*b = ft_pb(a, *b);
-			if ((*b)->next && (*b) != (*b)->next && (*b)->num >= average2)
+			if ((*b)->next && (*b) != (*b)->next && (*b)->num <= average2)
 				*b = ft_rb(*b);
-			next = get_next(*a, average);
-			prev = get_prev(*a, average);
-			to = ft_direction(1, next, prev, get_struct_len(*a) + 1);
+			next = get_next(*a, average2);
+			prev = get_prev(*a, average2);
+			to = ft_direction(1, next, prev, get_struct_len(*a));
 		}
-		else if (to == 1)
-			*a = ft_ra(*a);
-		else
+		else if (to == 2)
 			*a = ft_rra(*a);
-		count++;
+		else
+			*a = ft_ra(*a);
 	}
 }
 
@@ -228,45 +173,27 @@ void	while_more_average2(t_num **a, t_num **b, int average, int average2)
 	int next;
 	int prev;
 	int to;
-	static count = 0;
+
 	max = get_max(*b);
-	if (*b && (*b)->num)
+	if (*b)
 		min = get_min(*b);
 	else
-		min = get_min(*b) - 1;
-	next = get_next2(*b, average);
-	prev = get_prev2(*b, average);
-	to = ft_direction(1, next, prev, get_struct_len(*b) + 1);
-	while (more_average2(*b, average, min))
+		min = get_min(*a) - 1;
+	while (more_average2(*b, average2, min))
 	{
+		next = get_next2(*b, average2);
+		prev = get_prev2(*b, average2);
+		to = ft_direction(1, next, prev, get_struct_len(*b));
 		if ((*b)->num >= average)
 		{
 			*a = ft_pa(*a, b);
-			if ((*a)->next && (*a) != (*a)->next && (*a)->num > average2)
-				*a = ft_ra(*a);
-			next = get_next2(*b, average);
-			prev = get_prev2(*b, average);
-			to = ft_direction(1, next, prev, get_struct_len(*b) + 1);
+				if ((*a)->next && (*a) != (*a)->next && (*a)->num <= average2)
+					*a = ft_ra(*a);
+			to = ft_direction(1, next, prev, get_struct_len(*a));
 		}
-		else if (to == 1)
-			*b = ft_rb(*b);
+		else if (to == 2)
+		*b = ft_rrb(*b);
 		else
-			*b = ft_rrb(*b);
-		count++;
+		*b = ft_rb(*b);
 	}
-}
-void	ft_init_average(t_num **a, int len, int min, int *average)
-{
-	average[0] = ft_average((*a), len, min);
-	average[1] = ft_average2((*a), len, average[0]);
-	average[2] = ft_average2((*a), len, average[1]);
-	average[3] = ft_average2((*a), len, average[2]);
-	average[4] = ft_2average((*a), len, average[0], get_max(*a));
-	average[5] = ft_2average2((*a), len, average[1], average[0]);
-	average[6] = ft_2average2((*a), len, average[2], average[1]);
-	average[7] = ft_2average2((*a), len, average[3], average[2]);
-	average[8] = ft_2average((*a), len, average[4], get_max(*a));
-	average[9] = ft_2average((*a), len, average[5], average[4]);
-	average[10] = ft_2average((*a), len, average[6], average[5]);
-	average[11] = ft_2average((*a), len, average[7], average[6]);
 }
