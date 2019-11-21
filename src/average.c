@@ -194,7 +194,7 @@ void	while_more_average(t_num **a, t_num **b, int average, int average2)
 	int prev;
 	int to;
 	static count = 0;
-	to = ft_direction(1, get_pos(*a, next), get_pos(*a, prev), get_struct_len(*a));
+	to = ft_direction(1, next, prev, get_struct_len(*a));
 	max = get_max(*a);
 	if (*b && (*b)->num)
 		min = get_min(*b);
@@ -209,7 +209,7 @@ void	while_more_average(t_num **a, t_num **b, int average, int average2)
 			*b = ft_pb(a, *b);
 //			if ((*b)->next && (*b) != (*b)->next && (*b)->num <= average2)
 //				*b = ft_rb(*b);
-			to = ft_direction(1, get_pos(*a, next), get_pos(*a, prev), get_struct_len(*a));
+			to = ft_direction(1, next, prev, get_struct_len(*a));
 		}
 		else if (to == 1)
 			*a = ft_ra(*a);
@@ -227,23 +227,25 @@ void	while_more_average2(t_num **a, t_num **b, int average, int average2)
 	int prev;
 	int to;
 	static count = 0;
-	to = ft_direction(1, get_pos(*b, next), get_pos(*b, prev), get_struct_len(*b));
 	max = get_max(*b);
 	if (*b && (*b)->num)
 		min = get_min(*b);
 	else
 		min = get_min(*b) - 1;
+	printf("%d    %d\n", average, average2);
 	while (more_average2(*b, average, min))
 	{
-//		printf("%d", average);
 		next = get_next2(*b, average);
 		prev = get_prev2(*b, average);
+		to = ft_direction(1, next, prev, get_struct_len(*b));
 		if ((*b)->num >= average)
 		{
 			*a = ft_pa(*a, b);
-			if ((*a)->next && (*a) != (*a)->next && (*a)->num > average2)
+			if ((*a)->next && (*a) != (*a)->next && (*a)->num >= average2)
 				*a = ft_ra(*a);
-			to = ft_direction(1, get_pos(*b, next), get_pos(*b, prev), get_struct_len(*b));
+			next = get_next2(*b, average);
+			prev = get_prev2(*b, average);
+			to = ft_direction(1, next, prev, get_struct_len(*b));
 		}
 		else if (to == 1)
 			*b = ft_rb(*b);
@@ -262,4 +264,5 @@ void	ft_init_average(t_num **a, int len, int min, int *average)
 	average[5] = ft_2average2((*a), len, average[1], average[4]);
 	average[6] = ft_2average2((*a), len, average[2], average[5]);
 	average[7] = ft_2average2((*a), len, average[3], average[6]);
+	average[8] = ft_2average((*a), len, average[4], get_max(*a));
 }
