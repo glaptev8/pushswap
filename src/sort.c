@@ -140,124 +140,147 @@ void	ft_sort(t_num **a, t_num **b)
 	len = get_struct_len(*a) + 1;
 	min = get_min(*a) - 1;
 
-	average = ft_average((*a), len, min);
-	average2 = ft_average2((*a), len, average);
-	while (*a != (*a)->next)
+	if (*a && get_struct_len(*a) <= 100)
 	{
-		average = ft_average((*a), len, min);
-		average2 = ft_average2((*a), len, average);
-
-		if (more_average(*a, average2, min))
+		while (*a && (*a)->next && *a != (*a)->next)
+		{
+			average = ft_average((*a), len, min);
+			average2 = ft_average2((*a), len, average);
+			if (more_average(*a, average2, min) == 0)
+			{
+				while (more_average(*a, average, min))
+				{
+					if ((*a)->num <= average)
+						*b = ft_pb(a, *b);
+					else
+						*a = ft_ra(*a);
+				}
+			}
 			while_more_average(a, b, average, average2);
-		else
-			*b = ft_pb(a, *b);
-	}
-	if (*a && (*a)->next && (*a) == (*a)->next)
-		*b = ft_pb(a, *b);
-	while ((*b) && (*b)->next && *b != (*b)->next)
-	{
-		average = ft_average((*b), len, min);
-		average2 = ft_average((*b), len, average);
-		average3 = ft_average((*b), len, average2);
-		average4 = ft_average((*b), len, average3);
-		average5 = ft_average((*b), len, average4);
-		average6 = ft_average((*b), len, average5);
-		average7 = ft_average((*b), len, average5);
-		if (get_struct_len(*b) > 200)
-		{
-			if (more_average2(*b, average5, min) == 0)
-			{
-				while_more_average2 (a, b, average3, average4);
-			}
-			if (more_average2(*b, average4, min) == 0)
-			{
-				while_more_average2 (a, b, average2, average3);
-			}
-			if (more_average2(*b, average3, min) == 0)
-			{
-				while_more_average2 (a, b, average, average2);
-			}
-			while_more_average2 (a, b, average4, average5);
-		}
-		if (more_average2(*b, average2, min) == 0)
-		{
-			while (more_average(*b, average, min))
-			{
-				if ((*b)->num <= average)
-					*a = ft_pa(*a, b);
-				else
-					*b = ft_rb(*b);
-			}
-		}
-		if ((*b) && more_average2(*b, average2, min) == 0)
-		{
-			while (more_average2(*b, average, min))
-			{
-				if ((*b)->num >= average && (*b)->num > min && (*b)->num != max)
-					*a = ft_pa(*a, b);
-				else
-					*b = ft_rb(*b);
-			}
-		}
-		if ((*b) && get_struct_len(*b) <= 200)
-		{
-				while_more_average2 (a, b, average, average2);
 		}
 	}
-
-	while (*a != (*a)->next)
+	else
 	{
 		average = ft_average((*a), len, min);
 		average2 = ft_average2((*a), len, average);
-		average3 = ft_average2((*a), len, average2);
-		average4 = ft_average2((*a), len, average3);
-		average5 = ft_average2((*a), len, average4);
-		average6 = ft_average2((*a), len, average5);
-		average7 = ft_average2((*a), len, average6);
-		if (get_struct_len(*a) > 50)
+		while (*a != (*a)->next)
 		{
+			average = ft_average((*a), len, min);
+			average2 = ft_average2((*a), len, average);
+
+			if (more_average(*a, average2, min))
+				while_more_average(a, b, average, average2);
+			else
+				*b = ft_pb(a, *b);
+		}
+		if (*a && (*a)->next && (*a) == (*a)->next)
+			*b = ft_pb(a, *b);
+		while ((*b) && (*b)->next && *b != (*b)->next)
+		{
+			average = ft_average((*b), len, min);
+			average2 = ft_average((*b), len, average);
+			average3 = ft_average((*b), len, average2);
+			average4 = ft_average((*b), len, average3);
+			average5 = ft_average((*b), len, average4);
+			average6 = ft_average((*b), len, average5);
+			average7 = ft_average((*b), len, average5);
+			if (get_struct_len(*b) > 200)
+			{
+				if (more_average2(*b, average5, min) == 0)
+				{
+					while_more_average2 (a, b, average3, average4);
+				}
+				if (more_average2(*b, average4, min) == 0)
+				{
+					while_more_average2 (a, b, average2, average3);
+				}
+				if (more_average2(*b, average3, min) == 0)
+				{
+					while_more_average2 (a, b, average, average2);
+				}
+				while_more_average2 (a, b, average4, average5);
+			}
+			if (more_average2(*b, average2, min) == 0)
+			{
+				while (more_average(*b, average, min))
+				{
+					if ((*b)->num <= average)
+						*a = ft_pa(*a, b);
+					else
+						*b = ft_rb(*b);
+				}
+			}
+			if ((*b) && more_average2(*b, average2, min) == 0)
+			{
+				while (more_average2(*b, average, min))
+				{
+					if ((*b)->num >= average && (*b)->num > min && (*b)->num != max)
+						*a = ft_pa(*a, b);
+					else
+						*b = ft_rb(*b);
+				}
+			}
+			if ((*b) && get_struct_len(*b) <= 200)
+			{
+				while_more_average2 (a, b, average, average2);
+			}
+		}
+
+		while (*a != (*a)->next)
+		{
+			average = ft_average((*a), len, min);
+			average2 = ft_average2((*a), len, average);
+			average3 = ft_average2((*a), len, average2);
+			average4 = ft_average2((*a), len, average3);
+			average5 = ft_average2((*a), len, average4);
+			average6 = ft_average2((*a), len, average5);
+			average7 = ft_average2((*a), len, average6);
+			if (get_struct_len(*a) > 50)
+			{
 //			if (more_average(*a, average7, min) == 0)
 //			{
 //				while_more_average (a, b, average5, average6);
 //			}
-			if (more_average(*a, average6, min) == 0)
-			{
-				while_more_average (a, b, average4, average5);
+				if (more_average(*a, average6, min) == 0)
+				{
+					while_more_average (a, b, average4, average5);
+				}
+				if (more_average(*a, average5, min) == 0)
+				{
+					while_more_average (a, b, average3, average4);
+				}
+				if (more_average(*a, average4, min) == 0)
+				{
+					while_more_average (a, b, average2, average3);
+				}
+				if (more_average(*a, average3, min) == 0)
+				{
+					while_more_average (a, b, average, average2);
+				}
+				while_more_average (a, b, average5, average6);
 			}
-			if (more_average(*a, average5, min) == 0)
+			if (more_average(*a, average2, min) == 0)
 			{
-				while_more_average (a, b, average3, average4);
+				while (more_average(*a, average, min))
+				{
+					if ((*a)->num <= average && (*a)->num > min && (*a)->num != max)
+						*b = ft_pb(a, *b);
+					else
+						*a = ft_ra(*a);
+				}
 			}
-			if (more_average(*a, average4, min) == 0)
+			if (get_struct_len(*a) <= 50)
 			{
+
+				if (more_average(*a, average3, min) == 0)
+				{
+					while_more_average (a, b, average, average2);
+				}
 				while_more_average (a, b, average2, average3);
 			}
-			if (more_average(*a, average3, min) == 0)
-			{
-				while_more_average (a, b, average, average2);
-			}
-			while_more_average (a, b, average5, average6);
+			min = get_min(*b);
 		}
-		if (more_average(*a, average2, min) == 0)
-		{
-			while (more_average(*a, average, min))
-			{
-				if ((*a)->num <= average && (*a)->num > min && (*a)->num != max)
-					*b = ft_pb(a, *b);
-				else
-					*a = ft_ra(*a);
-			}
-		}
-		if (get_struct_len(*a) <= 50)
-		{
 
-			if (more_average(*a, average3, min) == 0)
-			{
-				while_more_average (a, b, average, average2);
-			}
-			while_more_average (a, b, average2, average3);
-		}
-		min = get_min(*b);
 	}
 	min = 0;
 	while (*b != (*b)->next)
@@ -282,7 +305,7 @@ void	ft_sort(t_num **a, t_num **b)
 		}
 		else if (to == 1)
 			*b = ft_rb(*b);
-		else if (to == 2)
+		else
 			*b = ft_rrb(*b);
 	}
 	*a = ft_pa(*a, b);
