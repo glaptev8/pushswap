@@ -60,6 +60,9 @@ void		ft_rrr(t_num **a, t_num **b)
 
 void		ft_rr(t_num **a, t_num **b)
 {
-	(*a) = ft_ra((*a));
-	(*b) = ft_ra((*b));
+	ft_printf("rr\n");
+	if ((*a) && (*a)->next && (*a)->next != *a)
+		*a = (*a)->next;
+	if (*b && (*b)->next && (*b)->next != *b)
+		*b = (*b)->next;
 }
