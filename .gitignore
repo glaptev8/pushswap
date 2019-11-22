@@ -12,3 +12,5 @@ random.sh
 ./ft_printf
 ./ft_printf/libftprintf.a
 ./problem_100
+./checker
+./push_swap
