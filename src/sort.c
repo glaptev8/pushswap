@@ -185,7 +185,7 @@ void	ft_sort(t_num **a, t_num **b)
 			{
 				while_more_average2 (a, b, average, average2);
 			}
-			while_more_average2 (a, b, average3, average5);
+			while_more_average2 (a, b, average3, average4);
 		}
 		if (more_average2(*b, average2, min) == 0)
 		{
