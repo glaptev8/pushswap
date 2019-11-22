@@ -10,13 +10,13 @@ libft/libft.a
 libft/*.o
 ft_printf/*.o
 ft_printf/libftprintf.a
-problem_100
+#problem_100
 checker
 push_swap
 libftprintf.a
 libft.a
-pyviz.py
-qq
-supertest.sh
+#pyviz.py
+#qq
+#supertest.sh
 checker.dSYM
 push_swap_visualizer
