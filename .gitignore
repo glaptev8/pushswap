@@ -6,3 +6,9 @@ obj_c
 random.sh
 .idea
 .idea/*
+./libft/libft.a
+./libft/*
+./libft
+./ft_printf
+./ft_printf/libftprintf.a
+./problem_100
