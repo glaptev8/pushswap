@@ -7,9 +7,8 @@ random.sh
 .idea
 .idea/*
 libft/libft.a
-libft/*
-libft
-ft_printf
+libft/*.o
+ft_printf/*.o
 ft_printf/libftprintf.a
 problem_100
 checker
@@ -20,3 +19,4 @@ pyviz.py
 qq
 supertest.sh
 checker.dSYM
+push_swap_visualizer
