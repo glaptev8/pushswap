@@ -6,3 +6,4 @@ obj_c
 random.sh
 .idea
 .idea/*
+./libftprintf.a
