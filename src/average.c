@@ -131,7 +131,7 @@ int biger_min(t_num *a, int min)
 	return (count);
 }
 
-void	while_more_average(t_num **a, t_num **b, int average, int average2)
+void	while_more_average(t_num **a, t_num **b, int average, int average2, int flag)
 {
 	int min;
 	int max;
@@ -153,11 +153,16 @@ void	while_more_average(t_num **a, t_num **b, int average, int average2)
 		if ((*a)->num <= average && (*a)->num > min && (*a)->num != max)
 		{
 			*b = ft_pb(a, *b);
-			if ((*b)->next && (*b) != (*b)->next && (*b)->num <= average2)
-				*b = ft_rb(*b);
 			next = get_next(*a, average2);
 			prev = get_prev(*a, average2);
 			to = ft_direction(1, next, prev, get_struct_len(*a));
+			if ((*b)->next && (*b) != (*b)->next && (*b)->num <= average2)
+			{
+				if (to == 1)
+					ft_rr(a, b);
+				else
+					*b = ft_rb(*b);
+			}
 		}
 		else if (to == 2)
 			*a = ft_rra(*a);
