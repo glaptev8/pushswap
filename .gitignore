@@ -12,3 +12,6 @@ random.sh
 ./ft_printf/
 ./ft_printf/*
 ./ft_printf/libftprintf.a
+./libft/*
+./libft
+./libft/libft.a
