@@ -197,3 +197,32 @@ void	while_more_average2(t_num **a, t_num **b, int average, int average2)
 		*b = ft_rb(*b);
 	}
 }
+
+void	ft_init_average(char *a, int min, int *average, int flag)
+{
+	int len
+
+	len = get_struct_len(a);
+	if (flag == 1)
+	{
+		average[0] = ft_average(a, len, min);
+		average[1] = ft_average(a, len, average[0]);
+		average[2] = ft_average(a, len, average[1]);
+		average[3] = ft_average(a, len, average[2]);
+		average[4] = ft_average(a, len, average[3]);
+		average[5] = ft_average(a, len, average[4]);
+		average[6] = ft_average(a, len, average[5]);
+		average[7] = ft_average(a, len, average[6]);
+	}
+	else
+	{
+		average[0] = ft_average(a, len, min);
+		average[1] = ft_average2(a, len, average[0]);
+		average[2] = ft_average2(a, len, average[1]);
+		average[3] = ft_average2(a, len, average[2]);
+		average[4] = ft_average2(a, len, average[3]);
+		average[5] = ft_average2(a, len, average[4]);
+		average[6] = ft_average2(a, len, average[5]);
+		average[7] = ft_average2(a, len, average[6]);
+	}
+}

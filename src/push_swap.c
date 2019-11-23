@@ -52,7 +52,7 @@ void	ft_pushb_a(t_num **b, t_num **a)
 		*b = to == 1 ? ft_rb(*b) : ft_rrb(*b);
 	}
 	(*a) = ft_pa(*a, b);
-	(*a)->num > (*a)->next->num ? a = ft_sa(*a) : 0;
+	(*a)->num > (*a)->next->num ? *a = ft_sa(*a) : 0;
 }
 
 void	ft_display_a(t_num *a)
