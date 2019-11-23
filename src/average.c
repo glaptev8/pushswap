@@ -1,136 +1,5 @@
 #include "../includes/push_swap.h"
 
-int		ft_average(t_num *a, int len, int min)
-{
-	int average;
-	int i;
-	int count;
-
-	count = 0;
-	i = 0;
-	average = 0;
-	while (i < len)
-	{
-		if (a->num && a->num > min)
-		{
-			average += a->num;
-			count++;
-		}
-		i++;
-		if (a->next)
-			a = a->next;
-		else
-			return (0);
-	}
-	if (count == 0)
-		return (0);
-	return (average / count);
-}
-
-int		ft_average2(t_num *a, int len, int min)
-{
-	int average;
-	int i;
-	int count;
-
-	count = 0;
-	i = 0;
-	average = 0;
-	while (i < len)
-	{
-		if (a->num && a->num < min)
-		{
-			average += a->num;
-			count++;
-		}
-		i++;
-		if (a->next)
-			a = a->next;
-		else
-			return (0);
-	}
-	if (count == 0)
-		return (0);
-	return (average / count);
-}
-
-int		more_average(t_num *a, int n, int min)
-{
-	t_num *b;
-
-	if (!a)
-		return (0);
-	if (a->num <= n && a->num > min)
-		return (1);
-	b = a;
-	a = a->next;
-	while (a != b)
-	{
-		if (a->num <= n && a->num > min)
-			return (1);
-		a = a->next;
-	}
-	return (0);
-}
-
-int		more_average2(t_num *a, int n, int min)
-{
-	t_num *b;
-
-	if (!a)
-		return (0);
-	if (a->num >= n && a->num > min)
-		return (1);
-	b = a;
-	a = a->next;
-	while (a != b)
-	{
-		if (a->num >= n && a->num > min)
-			return (1);
-		a = a->next;
-	}
-	return (0);
-}
-
-int has_nubmer(t_num *a, int n)
-{
-	t_num *q;
-
-	if (a)
-	{
-		if (a->num == n)
-			return (1);
-		q = a;
-		a = a->next;
-		while (a != q)
-		{
-			if (a->num == n)
-				return (1);
-			a = a->next;
-		}
-	}
-	return (0);
-}
-
-int biger_min(t_num *a, int min)
-{
-	t_num *q;
-	int count;
-
-	count = 0;
-	if (a->num > min)
-		count++;
-	q = a;
-	a = a->next;
-	while (a != q)
-	{
-		if (a->num > min)
-			count++;
-		a = a->next;
-	}
-	return (count);
-}
-
 void	while_more_average(t_num **a, t_num **b, int average, int average2)
 {
 	int min;
@@ -175,10 +44,7 @@ void	while_more_average2(t_num **a, t_num **b, int average, int average2)
 	int to;
 
 	max = get_max(*b);
-	if (*b)
-		min = get_min(*b);
-	else
-		min = get_min(*a) - 1;
+	min = (*b) ? get_min(*b) : get_min(*a) - 1;
 	while (more_average2(*b, average2, min))
 	{
 		next = get_next2(*b, average2);
@@ -187,23 +53,34 @@ void	while_more_average2(t_num **a, t_num **b, int average, int average2)
 		if ((*b)->num >= average)
 		{
 			*a = ft_pa(*a, b);
-				if ((*a)->next && (*a) != (*a)->next && (*a)->num <= average2)
-					*a = ft_ra(*a);
 			to = ft_direction(1, next, prev, get_struct_len(*a));
+			if ((*a)->next && (*a) != (*a)->next && (*a)->num <= average2)
+					*a = ft_ra(*a);
 		}
 		else if (to == 2)
-		*b = ft_rrb(*b);
+			*b = ft_rrb(*b);
 		else
-		*b = ft_rb(*b);
+			*b = ft_rb(*b);
 	}
 }
 
-void	ft_init_average(char *a, int min, int *average, int flag)
+void	ft_init_average(t_num *a, int min, int *average, int flag)
 {
-	int len
+	int len;
 
-	len = get_struct_len(a);
+	len = get_struct_len(a) + 1;
 	if (flag == 1)
+	{
+		average[0] = ft_average(a, len, min);
+		average[1] = ft_average2(a, len, average[0]);
+		average[2] = ft_average2(a, len, average[1]);
+		average[3] = ft_average2(a, len, average[2]);
+		average[4] = ft_average2(a, len, average[3]);
+		average[5] = ft_average2(a, len, average[4]);
+		average[6] = ft_average2(a, len, average[5]);
+		average[7] = ft_average2(a, len, average[6]);
+	}
+	else
 	{
 		average[0] = ft_average(a, len, min);
 		average[1] = ft_average(a, len, average[0]);
@@ -214,15 +91,85 @@ void	ft_init_average(char *a, int min, int *average, int flag)
 		average[6] = ft_average(a, len, average[5]);
 		average[7] = ft_average(a, len, average[6]);
 	}
-	else
+}
+
+void	step_for_b(t_num **a, t_num **b, int *average)
+{
+	int min;
+
+	if (*a && (*a)->next && (*a) == (*a)->next)
+		*b = ft_pb(a, *b);
+	min = get_min(*b);
+	while ((*b) && (*b)->next && *b != (*b)->next)
 	{
-		average[0] = ft_average(a, len, min);
-		average[1] = ft_average2(a, len, average[0]);
-		average[2] = ft_average2(a, len, average[1]);
-		average[3] = ft_average2(a, len, average[2]);
-		average[4] = ft_average2(a, len, average[3]);
-		average[5] = ft_average2(a, len, average[4]);
-		average[6] = ft_average2(a, len, average[5]);
-		average[7] = ft_average2(a, len, average[6]);
+		ft_init_average(*b, min, average, 2);
+		if (get_struct_len(*b) > 200)
+		{
+			if (more_average2(*b, average[4], min) == 0)
+				while_more_average2 (a, b, average[2], average[3]);
+			while_more_average2 (a, b, average[3], average[4]);
+		}
+		if (more_average2(*b, average[1], min) == 0)
+		{
+			while (more_average(*b, average[0], min))
+				if ((*b)->num <= average[0])
+					*a = ft_pa(*a, b);
+				else
+					*b = ft_rb(*b);
+		}
+		if ((*b) && get_struct_len(*b) <= 200)
+			while_more_average2 (a, b, average[0], average[1]);
+	}
+}
+
+void	push_last_a(t_num **a, t_num **b, int *average)
+{
+	int min;
+	int max;
+
+	min = get_min(*a) - 1;
+	max = get_max(*a);
+	while (*a && (*a)->next && *a != (*a)->next)
+	{
+		ft_init_average(*a, min, average, 1);
+		if (more_average(*a, average[1], min) == 0)
+		{
+			while (more_average(*a, average[0], min))
+			{
+				if ((*a)->num <= average[0] && (*a)->num > min && (*a)->num != max)
+					*b = ft_pb(a, *b);
+				else
+					*a = ft_ra(*a);
+			}
+		}
+		while_more_average(a, b, average[0], average[1]);
+	}
+}
+
+void	step_for_a(t_num **a, t_num **b, int *average)
+{
+	int min;
+
+	min = (*b && (*b)->next) ? get_min(*b) : get_min(*a) - 1;
+	ft_init_average(*a, min, average, 1);
+	if (get_struct_len(*a) > 50)
+	{
+		if (more_average(*a, average[5], min) == 0)
+			while_more_average (a, b, average[3], average[4]);
+		if (more_average(*a, average[4], min) == 0)
+			while_more_average (a, b, average[2], average[3]);
+		if (more_average(*a, average[3], min) == 0)
+			while_more_average (a, b, average[1], average[2]);
+		if (more_average(*a, average[2], min) == 0)
+			while_more_average (a, b, average[0], average[1]);
+		while_more_average (a, b, average[4], average[5]);
+	}
+	if (more_average(*a, average[1], min) == 0)
+		push_last_a(a, b, average);
+	if (get_struct_len(*a) <= 50)
+	{
+		if (more_average(*a, average[2], min) == 0)
+			while_more_average (a, b, average[0], average[1]);
+		while_more_average (a, b, average[1], average[2]);
 	}
 }

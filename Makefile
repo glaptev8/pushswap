@@ -19,13 +19,15 @@ C_P_FILE =	push_swap.c \
 			stack_push.c \
 			fresh.c \
 			ft_oper2.c \
-			average.c
+			average.c \
+			average2.c
 
 C_O_FILE =	clear.c \
 			ft_init_stack.c \
 			ft_is_num.c \
 			ft_print.c \
 			getters.c \
+			getters2.c \
 			lst.c \
 			stack_is_sort.c\
 			has_dublicat.c \

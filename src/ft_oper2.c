@@ -32,7 +32,6 @@ t_num		*ft_pb(t_num **a, t_num *b)
 	{
 		free(*a);
 		*a = NULL;
-//		free(b);
 	}
 	return (b);
 }

@@ -24,19 +24,22 @@ int		ft_direction(int x, int d, int m, int y)
 	return (to);
 }
 
-void	ft_pushb_a(t_num **b, t_num **a)
+void	ft_pushb_a(t_num **a, t_num **b)
 {
 	int max;
-	int flag;
 	int z;
 	int to;
+	int flag;
 
 	flag = 0;
-	while ((*b)->next && *b != (*b)->next)
+	while (*b != (*b)->next)
 	{
 		max = get_max(*b);
 		z = get_second_max(*b, max);
-		to = (get_pos(*b, max) > get_struct_len(*b) / 2) ? 2 : 1;
+		if (get_pos(*b, max) > get_struct_len(*b) / 2)
+			to = 2;
+		else
+			to = 1;
 		if ((*b)->num == max)
 		{
 			*a = ft_pa(*a, b);
@@ -47,12 +50,16 @@ void	ft_pushb_a(t_num **b, t_num **a)
 		else if ((*b)->num == z && flag == 0)
 		{
 			*a = ft_pa(*a, b);
-			flag= 1;
+			flag = 1;
 		}
-		*b = to == 1 ? ft_rb(*b) : ft_rrb(*b);
+		else if (to == 1)
+			*b = ft_rb(*b);
+		else
+			*b = ft_rrb(*b);
 	}
-	(*a) = ft_pa(*a, b);
-	(*a)->num > (*a)->next->num ? *a = ft_sa(*a) : 0;
+	*a = ft_pa(*a, b);
+	if ((*a)->num > (*a)->next->num)
+		*a = ft_sa(*a);
 }
 
 void	ft_display_a(t_num *a)
@@ -73,14 +80,24 @@ void	ft_display_a(t_num *a)
 void	push_swap(t_num **a)
 {
 	t_num *b;
+	int i;
 
 	b = NULL;
-//	if (!sort_one(a, b))
-//		return ;
+	i = 0;
+	if (!sort_one(a, b))
+		return ;
+	if (get_struct_len(*a) + 1 == 3)
+	{
+		sort_three(a);
+		return;
+	}
+	if (get_struct_len(*a) + 1 == 5)
+	{
+		sort_five(a, &b);
+		return;
+	}
 //	if (!is_a_sort(*a))
-		ft_oper(a, &b);
-//	if (!stacks_is_sort((*a), b) || b)
-//		ft_pushb_a(&b, a);
+		ft_sort(a, &b);
 }
 
 int		main(int argc, char **argv)

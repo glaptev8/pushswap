@@ -55,7 +55,6 @@ int					get_pos(t_num *a, int n);
 int					ft_direction(int x, int d, int m, int y);
 void				ft_oper(t_num **a, t_num **b);
 int					sort_one(t_num **a, t_num *b);
-void				step(int to, int min, t_num **a);
 void				ft_print(t_num *a, t_num *b);
 int					ft_printf(const char *format, ...);
 void				clear(t_num **t, int n);
@@ -73,4 +72,7 @@ void				fresh(char **s);
 int					is_a_sort(t_num *a);
 int					average(t_num *a, int len);
 int		more_average(t_num *a, int n, int min);
+void	ft_init_average(t_num *a, int min, int *average, int flag);
+void	ft_pushb_a(t_num **a, t_num **b);
+void	sort_three(t_num **a);
 #endif
