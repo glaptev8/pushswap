@@ -64,17 +64,17 @@ void	ft_pushb_a(t_num **a, t_num **b)
 
 void	ft_display_a(t_num *a)
 {
-	int d;
-
-	d = a->num;
-	ft_printf("%d ", a->num);
-	a = a->next ? a->next : a;
-	while (a->next && a->num != d)
-	{
-		ft_printf("%d ", a->num);
-		a = a->next;
-	}
-	ft_printf("\n");
+//	int d;
+//
+//	d = a->num;
+//	ft_printf("%d ", a->num);
+//	a = a->next ? a->next : a;
+//	while (a->next && a->num != d)
+//	{
+//		ft_printf("%d ", a->num);
+//		a = a->next;
+//	}
+//	ft_printf("\n");
 }
 
 void	push_swap(t_num **a)
@@ -96,7 +96,7 @@ void	push_swap(t_num **a)
 		sort_five(a, &b);
 		return;
 	}
-//	if (!is_a_sort(*a))
+	if (!is_a_sort(*a))
 		ft_sort(a, &b);
 }
 

@@ -53,7 +53,7 @@ OBJ_P =		$(addprefix $(OBJ_DIR), $(O_P_FILE))
 OBJ_O =		$(addprefix $(OBJ_DIR), $(O_O_FILE))
 OBJ_C =		$(addprefix $(OBJ_DIR_C), $(O_C_FILE))
 
-all: $(NAME_PUSH_SWAP)
+all: $(NAME_PUSH_SWAP) $(NAME_CHECKER)
 
 $(NAME_PUSH_SWAP): $(OBJ_DIR) $(OBJ_P) $(OBJ_O)
 	@make -C libft/
