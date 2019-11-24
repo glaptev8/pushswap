@@ -12,7 +12,7 @@
 
 #include "../includes/push_swap.h"
 
-int		valid_atoi(char **str)
+int		valid_atoi(const char **str)
 {
 	int sign;
 

@@ -3,7 +3,7 @@ NAME_PUSH_SWAP = push
 NAME_CHECKER = check
 LIBFT_A = libft/libft.a
 LIBFTPRINTF_A = ft_printf/libftprintf.a
-COMP =		gcc -c -o
+COMP =		gcc -Wall -Wextra -Werror -c -o
 PUSH_SWAP_H = -I includes/
 
 OBJ_DIR =	obj/

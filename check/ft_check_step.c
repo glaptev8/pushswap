@@ -12,8 +12,10 @@
 
 #include "../includes/push_swap.h"
 
-int		ft_check_step(char *com, t_num **a, t_num **b, int flag)
+int		ft_check_step(t_num **a, t_num **b, int flag)
 {
+	char *com;
+
 	flag == 1 ? ft_print(*a, *b) : 0;
 	while (get_next_line(0, &com) != 0)
 	{
