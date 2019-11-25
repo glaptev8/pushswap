@@ -46,7 +46,6 @@ t_num		*ft_pa(t_num *a, t_num **b)
 	{
 		free(*b);
 		*b = NULL;
-//		free(b);
 	}
 	return (a);
 }

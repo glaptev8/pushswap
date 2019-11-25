@@ -23,10 +23,15 @@ int		has_dublicat(char **s, int argc)
 		j = 0;
 		while (j < i)
 		{
+			if ((!ft_strcmp(s[i], "-0") || !ft_strcmp(s[i], "0")) && (!ft_strcmp(s[j], "-0") || (!ft_strcmp(s[j], "0"))))
+			{
+				ft_putstr_fd("Error\n", 2);
+				return (-1);
+			}
 			if (!ft_strcmp(s[i], "-0"))
-				s[i]++;
+				i++;
 			if (!ft_strcmp(s[j], "-0"))
-				s[j]++;
+				j++;
 			if (!ft_strcmp(s[i], s[j]))
 			{
 				ft_putstr_fd("Error\n", 2);
