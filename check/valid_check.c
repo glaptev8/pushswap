@@ -14,11 +14,9 @@
 
 int		valid_check(char **s, int *argc, int *flag, t_num **a)
 {
-	*flag = *flag;
-	*a = *a;
-	if (has_dublicat(s, *argc) == -1)
-		return (0);
 	if (init_check(argc, s, a, flag) == 0)
+		return (0);
+	if (has_dublicat(s, *argc) == -1)
 		return (0);
 	return (1);
 }

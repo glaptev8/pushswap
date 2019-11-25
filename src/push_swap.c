@@ -11,59 +11,46 @@
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-#include <stdlib.h>
 
 int		ft_direction(int x, int d, int m, int y)
 {
 	int to;
 
-	if (x > d && x > m)
-		m < d ? d = m : 0;
-	else if (d > x && d > m)
-		m < x ? x = m : 0;
-	else if (m > d && m > x)
-	{
-		if (d < x)
-			x = m;
-		else
-			d = m;
-	}
-	if (x > d)
-		to = y - x < d ? 2 : 1;
-	else if (y - d <= x - 1 || d == y)
-		to = 2;
+	x = 1;
+	if (m > d)
+		to = y - m <= d ? 2 : 1;
 	else
-		to = 1;
+		to = y - d <= m ? 2 : 1;
 	return (to);
 }
 
-void	ft_pushb_a(t_num **b, t_num **a)
+void	ft_pushb_a(t_num **a, t_num **b)
 {
-	int		q;
+	int z;
+	int to;
+	int flag;
 
-	q = get_struct_len((*b));
-	while (--q >= 0)
+	flag = 0;
+	while (*b != (*b)->next)
 	{
-		(*a) = ft_pa((*a), b);
-		if (q >= -1)
+		z = get_second_max(*b, get_max(*b));
+		to = (get_pos(*b, get_max(*b)) > get_struct_len(*b) / 2) ? 2 : 1;
+		if ((*b)->num == get_max(*b))
 		{
-			if ((*b) && (*b)->prev &&
-			(*b)->num > (*b)->prev->num && ((*b)->num > (*a)->prev->num))
-				(*b) = ft_rrb((*b));
+			*a = ft_pa(*a, b);
+			((*a)->num > (*a)->next->num) ? (*a) = ft_sa(*a) : 0;
+			flag = 0;
 		}
-		if ((*a)->num > (*a)->prev->num)
-			(*a) = ft_ra((*a));
-		if ((*a)->num > (*a)->next->num)
-			(*a) = ft_sa((*a));
+		else if ((*b)->num == z && flag == 0)
+		{
+			*a = ft_pa(*a, b);
+			flag = 1;
+		}
+		else
+			*b = (to == 1) ? ft_rb(*b) : ft_rrb(*b);
 	}
-	(*a) = lst_add((*a), (*b)->num);
-	ft_printf("pa\n");
-	if ((*a)->num > (*a)->prev->num)
-		(*a) = ft_ra((*a));
-	(*a)->num > (*a)->next->num ? (*a) = ft_sa((*a)) : 0;
-	free(*b);
-	b = NULL;
-	free(b);
+	*a = ft_pa(*a, b);
+	((*a)->num > (*a)->next->num) ? *a = ft_sa(*a) : 0;
 }
 
 void	ft_display_a(t_num *a)
@@ -83,18 +70,25 @@ void	ft_display_a(t_num *a)
 
 void	push_swap(t_num **a)
 {
-	t_num *b;
+	t_num	*b;
+	int		i;
 
 	b = NULL;
-	if ((*a) && (*a)->num && (*a)->next &&
-	(*a)->next->num && (*a)->num > (*a)->next->num)
-		*a = ft_sa(*a);
+	i = 0;
 	if (!sort_one(a, b))
 		return ;
-	while ((*a) && (*a)->next && (*a)->next != (*a) && !stacks_is_sort((*a), b))
-		ft_oper(a, &b);
-	if (!stacks_is_sort((*a), b) || b)
-		ft_pushb_a(&b, a);
+	if (get_struct_len(*a) + 1 == 3)
+	{
+		sort_three(a);
+		return ;
+	}
+	if (get_struct_len(*a) + 1 == 5)
+	{
+		sort_five(a, &b);
+		return ;
+	}
+	if (!is_a_sort(*a))
+		ft_sort(a, &b);
 }
 
 int		main(int argc, char **argv)
@@ -121,5 +115,5 @@ int		main(int argc, char **argv)
 	push_swap(&a);
 	clear(&a, argc);
 	fresh(s);
-	return (1);
+	return (0);
 }

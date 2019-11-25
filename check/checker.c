@@ -16,7 +16,7 @@ int		init_check(int *argc, char **argv, t_num **a, int *flag)
 {
 	if (!argv[0])
 		return (0);
-	if (argv && *argv && argv[0][0] == '\0')
+	if (*argv && argv[0][0] == '\0')
 		return (0);
 	if (*argc == 0 || (*argc == 1 && !ft_strcmp(argv[0], "-v")))
 		return (0);
@@ -99,6 +99,7 @@ int		check_step3(char *com, t_num **a, t_num **b)
 		ft_rr(a, b);
 	else
 	{
+		printf("(  %s  )", com);
 		ft_putstr_fd("Error\n", 2);
 		free(com);
 		return (-1);
@@ -110,13 +111,11 @@ int		main(int argc, char **argv)
 {
 	t_num	*a;
 	t_num	*b;
-	char	*com;
 	int		flag;
 	char	**s;
 
 	argv++;
 	flag = 0;
-	com = NULL;
 	b = NULL;
 	s = check_str(&argc, &argv);
 	if (s && !ft_strcmp(argv[0], "-v"))
@@ -128,7 +127,7 @@ int		main(int argc, char **argv)
 		finish_check(&a, &b, s);
 		return (0);
 	}
-	ft_check_step(com, &a, &b, flag);
+	ft_check_step(&a, &b, flag);
 	finish_check(&a, &b, s);
 	return (0);
 }
