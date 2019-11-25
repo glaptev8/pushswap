@@ -28,6 +28,11 @@ t_num		*ft_pb(t_num **a, t_num *b)
 	b = lst_add(b, (*a)->num);
 	if ((*a) && (*a)->next && (*a) != (*a)->next)
 		lst_remove(a);
+	else
+	{
+		free(*a);
+		*a = NULL;
+	}
 	return (b);
 }
 
@@ -35,8 +40,13 @@ t_num		*ft_pa(t_num *a, t_num **b)
 {
 	ft_printf("pa\n");
 	a = lst_add(a, (*b)->num);
-	if ((*b) && (*b)->next != *b)
+	if ((*b) && (*b)->next && (*b)->next != *b)
 		lst_remove(b);
+	else
+	{
+		free(*b);
+		*b = NULL;
+	}
 	return (a);
 }
 
@@ -48,6 +58,9 @@ void		ft_rrr(t_num **a, t_num **b)
 
 void		ft_rr(t_num **a, t_num **b)
 {
-	(*a) = ft_ra((*a));
-	(*b) = ft_ra((*b));
+	ft_printf("rr\n");
+	if ((*a) && (*a)->next && (*a)->next != *a)
+		*a = (*a)->next;
+	if (*b && (*b)->next && (*b)->next != *b)
+		*b = (*b)->next;
 }

@@ -18,14 +18,14 @@ int		init_printf(t_num **a, t_num **b, int *o)
 
 	d = 0;
 	write(1, "\e[1;1H\e[2J", 11);
-	ft_printf("%-8s stack2\n", "stack1");
+	ft_printf("%-13s stack2\n", "stack1");
 	if (*a)
 	{
 		*o = (*a)->num;
-		ft_printf("%-9d", *o);
+		ft_printf("%-14d", *o);
 	}
 	else
-		ft_printf("         ");
+		ft_printf("              ");
 	if (*a && (*a)->next)
 		*a = (*a)->next;
 	if (*b)
@@ -49,11 +49,11 @@ void	ft_print(t_num *a, t_num *b)
 	{
 		if (a && a->num != o && a->next)
 		{
-			ft_printf("%-9d", a->num);
+			ft_printf("%-14d", a->num);
 			a = a->next;
 		}
 		else
-			ft_printf("         ");
+			ft_printf("              ");
 		if (b && b->index == -1 && b->next && b->num != d)
 			ft_printf("%d", b->num);
 		if (b && b->next && b->num != d)

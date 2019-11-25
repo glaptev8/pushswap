@@ -18,7 +18,7 @@ char		**check_str(int *argc, char ***argv)
 	char	**s;
 
 	i = 0;
-	if ((*argc == 2) || (*argc == 3))
+	if ((*argc == 2) || (*argc == 3 && !ft_strcmp((*argv)[0], "-v")))
 	{
 		if (*argc == 3)
 			s = ft_strsplit((*argv)[1], ' ');

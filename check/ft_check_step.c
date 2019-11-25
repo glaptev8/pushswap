@@ -12,24 +12,10 @@
 
 #include "../includes/push_swap.h"
 
-int		is_a_sort(t_num *a)
+int		ft_check_step(t_num **a, t_num **b, int flag)
 {
-	t_num *b;
+	char *com;
 
-	b = a;
-	if (a && a->next && a->next == a)
-		return (1);
-	while (a && a->next && a->next != b)
-	{
-		if (a->num > a->next->num)
-			return (0);
-		a = a->next;
-	}
-	return (1);
-}
-
-int		ft_check_step(char *com, t_num **a, t_num **b, int flag)
-{
 	flag == 1 ? ft_print(*a, *b) : 0;
 	while (get_next_line(0, &com) != 0)
 	{

@@ -30,22 +30,22 @@ static int		new_str(char **str, int fd, char **line)
 
 int				get_next_line(const int fd, char **line)
 {
-	static char	*str[10];
+	static char	*str[1000];
 	char		*tmp;
 	int			ret;
 	char		buf[BUFF_SIZE + 1];
 
 	if (fd < 0 || !line)
 		return (-1);
-	ret = 0;
-	if ((ret = read(fd, buf, BUFF_SIZE)) > 0)
+	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
 	{
 		buf[ret] = '\0';
-		if (!str[fd])
-			str[fd] = ft_strnew(ret - 1);
+		(str[fd] == NULL) ? str[fd] = ft_strnew(1) : 0;
 		tmp = ft_strjoin(str[fd], buf);
 		free(str[fd]);
 		str[fd] = tmp;
+		if (ft_strchr(buf, '\n'))
+			break ;
 	}
 	if (ret < 0)
 		return (-1);

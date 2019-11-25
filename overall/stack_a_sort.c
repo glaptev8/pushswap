@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valid_check.c                                      :+:      :+:    :+:   */
+/*   stack_a_sort.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmelia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/15 19:11:44 by tmelia            #+#    #+#             */
-/*   Updated: 2019/11/15 19:11:47 by tmelia           ###   ########.fr       */
+/*   Created: 2019/11/25 13:56:10 by tmelia            #+#    #+#             */
+/*   Updated: 2019/11/25 13:56:12 by tmelia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int		valid_check(char **s, int *argc, int *flag, t_num **a)
+int		is_a_sort(t_num *a)
 {
-	if (init_check(argc, s, a, flag) == 0)
-		return (0);
-	if (has_dublicat(s, *argc) == -1)
-		return (0);
+	t_num *b;
+
+	b = a;
+	if (a && a->next && a->next == a)
+		return (1);
+	while (a && a->next && a->next != b)
+	{
+		if (a->num > a->next->num)
+			return (0);
+		a = a->next;
+	}
 	return (1);
 }

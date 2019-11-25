@@ -12,6 +12,53 @@
 
 #include "../includes/push_swap.h"
 
+void	sort_three(t_num **a)
+{
+	int i;
+
+	i = 0;
+	while (i < 2)
+	{
+		if ((*a)->num > (*a)->prev->num)
+			(*a) = ft_ra(*a);
+		else if ((*a)->num > (*a)->next->num)
+			(*a) = ft_sa(*a);
+		else if ((*a)->prev->num < (*a)->next->num)
+			(*a) = ft_rra(*a);
+		i++;
+	}
+}
+
+void	sort_five(t_num **a, t_num **b)
+{
+	int to;
+	int max;
+	int min;
+
+	max = get_max(*a);
+	min = get_min(*a);
+	to = ft_direction(1, get_pos(*a, max), get_pos(*a, min), 5);
+	while (get_struct_len(*a) + 1 > 3)
+	{
+		if ((*a)->num == min || (*a)->num == max)
+			*b = ft_pb(a, *b);
+		else
+			*a = (to == 1) ? ft_rra(*a) : ft_ra(*a);
+	}
+	sort_three(a);
+	*a = ft_pa(*a, b);
+	if ((*a)->num > (*a)->prev->num)
+	{
+		*a = ft_ra(*a);
+		*a = ft_pa(*a, b);
+	}
+	else
+	{
+		*a = ft_pa(*a, b);
+		*a = ft_ra(*a);
+	}
+}
+
 int		sort_one(t_num **a, t_num *b)
 {
 	if (stacks_is_sort((*a)->next, b))
@@ -27,14 +74,6 @@ int		sort_one(t_num **a, t_num *b)
 	return (1);
 }
 
-void	step(int to, int min, t_num **a)
-{
-	if (to == 1 && (*a)->num != min)
-		(*a) = ft_ra((*a));
-	else if ((*a)->num != min)
-		(*a) = ft_rra((*a));
-}
-
 int		init_n(int *min, int *z, int *max, t_num **a)
 {
 	*min = get_min((*a));
@@ -46,46 +85,23 @@ int		init_n(int *min, int *z, int *max, t_num **a)
 
 void	ft_sort(t_num **a, t_num **b)
 {
-	int to;
-	int max;
-	int z;
-	int min;
+	int average[9];
 
-	to = init_n(&min, &z, &max, a);
-	while ((*a)->num != min && !stacks_is_sort((*a), (*b)))
+	if (*a && get_struct_len(*a) <= 100)
+		push_last_a(a, b, average);
+	else
 	{
-		if (!sort_one(a, (*b)))
-			break ;
-		if ((*a)->num == z && !stacks_is_sort((*a), (*b)))
+		while (*a != (*a)->next)
 		{
-			(*b) = ft_pb(a, (*b));
-			break ;
+			ft_init_average(*a, get_min(*a) - 1, average, 1);
+			if (more_average(*a, average[1], get_min(*a) - 1))
+				while_more_average(a, b, average[0], average[1]);
+			else
+				*b = ft_pb(a, *b);
 		}
-		if ((*b) && get_struct_len((*b)) + 1 > 2 && (*a) &&
-		(*a)->num && (*a)->num == max && !stacks_is_sort((*a), (*b)))
-		{
-			(*b) = ft_pb(a, (*b));
-			(*b) = ft_rb((*b));
-			break ;
-		}
-		step(to, min, a);
+		step_for_b(a, b, average);
+		while (*a != (*a)->next)
+			step_for_a(a, b, average);
 	}
-}
-
-void	ft_oper(t_num **a, t_num **b)
-{
-	int	min;
-
-	min = get_min((*a));
-	ft_sort(a, b);
-	if ((*a)->next != (*a) && (*a)->num == min && !stacks_is_sort((*a), (*b)))
-	{
-		(*b) = ft_pb(a, (*b));
-		if ((*a) && (*a)->num && (*a)->next &&
-		(*a)->next->num && (*a)->num > (*a)->next->num)
-			(*a) = ft_sa((*a));
-		if ((*b) && (*b)->next &&
-		(*b)->next != (*b) && (*b)->num < (*b)->next->num)
-			(*b) = ft_sb((*b));
-	}
+	ft_pushb_a(a, b);
 }

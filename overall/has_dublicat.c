@@ -17,20 +17,24 @@ int		has_dublicat(char **s, int argc)
 	int i;
 	int j;
 
-	i = 0;
-	while (i < argc)
+	i = -1;
+	while (++i < argc)
 	{
-		j = 0;
-		while (j < i)
+		j = -1;
+		while (++j < i)
 		{
+			if ((!ft_strcmp(s[i], "-0") || !ft_strcmp(s[i], "0")) &&
+			(!ft_strcmp(s[j], "-0") || (!ft_strcmp(s[j], "0"))))
+			{
+				ft_putstr_fd("Error\n", 2);
+				return (-1);
+			}
 			if (!ft_strcmp(s[i], s[j]))
 			{
 				ft_putstr_fd("Error\n", 2);
 				return (-1);
 			}
-			j++;
 		}
-		i++;
 	}
 	return (1);
 }

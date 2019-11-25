@@ -23,8 +23,7 @@ long int		ft_atoi(const char *str)
 	border = (long int)(FT_LONG_MAX / 10);
 	while (*str && ((*str >= 9 && *str <= 13) || *str == ' '))
 		str++;
-	if (*str == '-')
-		sign = -1;
+	(*str == '-') ? sign = -1 : 0;
 	if ((*str == '-' || *str == '+') && *(str - 1) != '-' && *(str - 1) != '+')
 		++str;
 	while (*str == '0')
