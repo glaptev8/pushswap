@@ -3,6 +3,7 @@
 ./libft/*.o
 obj
 obj_c
+obj_o
 random.sh
 .idea
 .idea/*
