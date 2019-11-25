@@ -99,7 +99,6 @@ int		check_step3(char *com, t_num **a, t_num **b)
 		ft_rr(a, b);
 	else
 	{
-		printf("(  %s  )", com);
 		ft_putstr_fd("Error\n", 2);
 		free(com);
 		return (-1);

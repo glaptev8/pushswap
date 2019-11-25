@@ -42,7 +42,8 @@ void	sort_five(t_num **a, t_num **b)
 	{
 		if ((*a)->num == min || (*a)->num == max)
 			*b = ft_pb(a, *b);
-		*a = (to == 1) ? ft_rra(*a) : ft_ra(*a);
+		else
+			*a = (to == 1) ? ft_rra(*a) : ft_ra(*a);
 	}
 	sort_three(a);
 	*a = ft_pa(*a, b);

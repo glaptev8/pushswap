@@ -1,4 +1,3 @@
-# NAME_CHECKER = checker
 NAME_PUSH_SWAP = push
 NAME_CHECKER = check
 LIBFT_A = libft/libft.a
@@ -89,7 +88,7 @@ $(OBJ_DIR_C)%.o: $(SRC_C_DIR)%.c
 			@echo Create: $(@:obj/%=%)
 			@gcc $(FLAGS) -c $< -o $@
 clean:
-		rm -rf obj obj_c
+		rm -rf obj obj_c obj_o
 		@make -C ft_printf/ clean
 		@make -C libft/ clean
 
